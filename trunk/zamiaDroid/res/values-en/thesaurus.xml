@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Intro text thesaurus -->
+
+	<string name="tvInfoListTh">Select a taxonomic thesaurus to manage. You can see the thesaurus\' properties and delete it. You can also look for taxa.</string>
+	<string name="thListTab">List of taxonomic thesauri</string>
+	
+    <!-- Thesaurus Actions -->
+
+        <!-- View -->
+        <string name="bChooseTh">Chose taxonomic thesaurus</string>
+        <string name="tvChoosenTh"><b>Chosen taxonomic thesaurus:</b></string>
+        <string name="tvAccepted"><b>Accepted name</b></string>
+        <string name="tvSynonymous"><b>It is a synonym, the accepted name is: </b></string>
+        <string name="tvIcodeMissing"><b>No added Icode</b></string>
+        <string name="thChooseIntro"><b>Choose taxonomic thesaurus of the system</b></string>
+        <string name="taxonHint">write taxon name...</string>
+        <string name="thHint">write taxon name...</string>
+        <string name="emptyThList">There are no taxonomic thesauri in the system. Import one with the Import taxonomic thesaurus option</string>
+
+
+        <!-- Removal -->
+	
+        <string name="bRemoveTh">Delete taxonomic thesaurus</string>
+        <string name="deleteThQuestion">Do you want to delete this taxonomic thesaurus?</string>
+        <string name="thUsed">Taxonomic thesaurus in use. It can not be deleted.</string>
+
+        <!-- Change Thesaurus -->
+        <string name="bChangeTh">Change taxonomic thesaurus</string>
+        <string name="thChangedText">Default taxonomic thesaurus changed: </string>
+
+        <!-- Import Thesaurus -->
+            
+        <string name="thName">Indicate thesaurus name </string>
+       	<string name="thLoading">Loading taxonomic thesaurus...</string>
+        <string name="thLoadingTxt">Please do not close this window. The import process may take a few minutes, depending on the size of the taxonomic thesaurus.</string>
+        <string name="bImportTh">Import taxonomic thesaurus</string>
+        <string name="sameThName">There already is an existing thesaurus in the system, called</string>
+            
+
+    <!-- Thesaurus relations with projects-->
+	<string name="tvDefaultTh">Taxonomic thesaurus of the system: </string>
+	<string name="cbNoTh">Without taxonomic thesaurus</string>
+    <string name="noThQuestion">No selected thesaurus. Choose one or select not using taxonomic thesaurus</string>
+
+</resources>

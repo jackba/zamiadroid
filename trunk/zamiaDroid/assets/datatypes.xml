@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding="UTF-8" ?>
+<DataTypes>
+
+	<DataType name="int" description="valor enter" type="simple">
+	
+	</DataType>
+	
+	<DataType name="string" description="valor text" type="simple">
+	
+	</DataType>
+	
+	<DataType name="thesaurus" description="valor text" type="simple">
+	
+	</DataType>
+	
+	<DataType name="bool" description="valor text" type="simple">
+	
+	</DataType>
+	
+<DataType name="real" description="valor real" type="simple">
+	
+	</DataType> 
+  <DataType name="Observador" description="Llistat de voluntaris" type="complex">
+	
+		<value>David Martí Pino</value>
+		<value>Eloi Rovira Rojas</value>
+		<value>Ramon Ferré Sánchez</value>
+		
+	
+	</DataType>
+	
+	  <DataType name="Dubte" description="Probabilitat de certesa" type="complex">
+			
+		<value>0 - No indicada</value>
+		<value>1 - OK</value>
+		<value>2 - Cf. Gen.</value>
+		<value>3 - Cf. Sp.</value>
+		<value>4 - Cf. Infrasp. Sp.</value>
+		<value>5 - Gr.</value>
+	
+	</DataType>
+	
+	  <DataType name="resposta_S_N_NC" description="resposta Enquesta S N Nc" type="complex">
+	
+		<value>Sí</value>
+		<value>No</value>
+		<value>Ns/Nc</value>
+		
+	
+	</DataType>
+	
+	<DataType name="Sargantana" description="tipus Sargantana per censos" type="complex">
+	
+		<value>Ibèrica</value>
+		<value>Cua-roja</value>
+		<value>Cua-llarga</value>
+		<value>Dragó</value>
+		
+		
+	
+	</DataType>
+	
+	<DataType name="Estat mosquit" description="tipus de mosquits per a estudis" type="complex">
+	
+		<value>1-2</value>
+		<value>3-4</value>
+		<value>Pupa</value>
+		<value>Carcassa</value>
+		<value>Adult</value>
+		
+	
+	</DataType>
+	
+	
+</DataTypes>

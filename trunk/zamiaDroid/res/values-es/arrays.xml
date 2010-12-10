@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    
+    <string-array name="sisCoord">
+        <item>UTM</item>
+        <item>Latitud / Longitud</item>
+       
+    </string-array>
+    
+    <string-array name="newFieldTypes">
+        <item>Campo libre</item>
+        <item>Campo Predefinido</item>
+    </string-array>
+    
+   <string-array name="gpsCapture">
+        <item>Inicio de la captura</item>
+        <item>Final de la captura</item>
+        <item>Inicio y Final de la captura</item>
+    </string-array>
+    
+    <string-array name="gpsCaptureValues">
+        <item>start</item>
+        <item>end</item>
+        <item>both</item>
+    </string-array>
+    
+     <string-array name="sureness">
+        <item>OK</item>
+        <item>Gen. confer</item>
+        <item>Sp. confer</item>
+        <item>Sensulato</item>
+        <item>Group</item>
+    </string-array>
+    
+    <string-array name="exportFormats">
+        <item>Fagus</item>
+        <item>TAB</item>
+        <item>JSON</item>
+    </string-array>
+    
+    <string-array name="languages">
+        <item>Català</item>
+        <item>Castellano</item>
+        <item>English</item>
+        <item>Français</item>
+    </string-array>
+    
+    <string-array name="languagesLocales">
+        <item>ca</item>
+        <item>es</item>
+        <item>en</item>
+        <item>fr</item>
+    </string-array>
+    
+    <string-array name="predValues">
+        <item>Taxon</item>
+        <item>Fotografía</item>
+        <item>Comentario</item>
+    </string-array>
+   
+    
+</resources>

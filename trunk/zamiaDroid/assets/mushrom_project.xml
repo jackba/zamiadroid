@@ -1,0 +1,35 @@
+<fagus_profile>
+
+<language>català</language>
+
+<default_informatiser>Xavier Font</default_informatiser>
+
+<biological_record_type>Botanical</biological_record_type>
+
+
+<SideData type="ECO">
+
+</SideData>
+
+
+<SideData type="GEO">
+
+	<Datum def_edit="false" label="Altitude (m)" name="altitude" tip="Altitude above sea level">
+	<value/>
+	</Datum>
+</SideData>
+
+<SideData type="ORGANISM_ATT"/>
+<SideData type="HERB"/>
+
+
+<SideData type="TAXON_ATT">
+	<Datum label="Fotografia" name="photo" tip="Fotografia">
+		<value/>
+	</Datum>
+</SideData>
+
+<CitationCoordinate code="" precision="0.0" type="UTM alphanum" units="1m"/>
+
+
+</fagus_profile>

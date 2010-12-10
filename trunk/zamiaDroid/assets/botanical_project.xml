@@ -1,0 +1,96 @@
+<fagus_profile>
+
+<language>català</language>
+
+<default_informatiser>Xavier Font</default_informatiser>
+
+<biological_record_type>Botanical</biological_record_type>
+
+
+<SideData type="ECO">
+	<Datum def_edit="false" label="Habitat" name="habitat" tip="Habitat (biotope) name">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Geology/Substratum" name="substratum">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="pH" name="ph">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Carbonates (CaCO3)" name="caco3">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Community" name="community" tip="Ecological community sampled">
+	<value/>
+	</Datum>
+</SideData>
+
+
+<SideData type="GEO">
+	<Datum def_edit="false" label="Locality" name="locality" tip="Place (locality) were sample was obtained">
+		<value>Torredembarra</value>
+	</Datum>
+	<Datum def_edit="false" label="Altitude (m)" name="altitude" tip="Altitude above sea level">
+	<value/>
+	</Datum>
+</SideData>
+
+<SideData type="ORGANISM_ATT"/>
+<SideData type="HERB"/>
+
+
+<SideData type="TAXON_ATT">
+	<Datum def_edit="false" label="Biological Form" name="biological_form" tip="Raunkiaer biological form for plants">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Maximum Size" name="maximum_size" tip="Maximum size of the organism">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Minimum Size" name="minimum_size" tip="Minimum size of the organism">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Characteristic Size" name="characteristic_size" tip="Characteristic size of the organism">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Flowering start" name="flowering_start" tip="Time of the year when flowering starts">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Flowering end" name="flowering_end" tip="Time of the year when flowering ends">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Ecology" name="ecology" tip="Ecological traits of the organism">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Soil type" name="soil_type" tip="Plant preferred soil type">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Altitudinal stages" name="altitudinal_stages" tip="Altitudinal stages where the organism can be found">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Maximum superior altitude" name="maximum_superior_altitude" tip="Maximum altitude where the organism has been ever found">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Superior altitude" name="superior_altitude" tip="Maximum altitude where the organism can be found">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Inferior altitude" name="inferior_altitude" tip="Minimum altitude where the organism can be found">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Mimimum inferior altiture" name="minimum_inferior_altitude" tip="Minimum altitude where the organism has been ever found">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Frequency" name="frequency" tip="Frequency of the organism">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Observed frequency" name="observed_frequency" tip="Observed field frequency">
+	<value/>
+	</Datum>
+	<Datum def_edit="false" label="Biogeography" name="biogeography" tip="Chorological distribution of plants">
+	<value/>
+	</Datum>
+</SideData>
+
+<CitationCoordinate code="" precision="0.0" type="UTM alphanum" units="1m"/>
+
+
+</fagus_profile>

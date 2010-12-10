@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="fill_parent" 
+              android:layout_height="fill_parent"
+              android:orientation="horizontal" 
+              >
+
+
+
+    <LinearLayout android:id="@+id/LinearLayout05"
+	        android:layout_height="wrap_content" android:layout_width="wrap_content"
+              android:orientation="horizontal" 
+			android:padding="5px"			
+	        	        >
+    
+    
+		<TextView android:id="@+id/tvProjectName"
+		    xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		     android:padding="2px"
+		         android:textSize="22sp"
+		     />
+		     
+		
+		
+		
+	</LinearLayout>
+
+    <LinearLayout android:id="@+id/LinearLayout05"
+	        android:layout_height="wrap_content" android:layout_width="fill_parent"
+	        	        android:gravity="right|center"
+
+	        	        >
+    
+		    
+		    <RadioButton android:text="" android:id="@+id/cBedit" android:layout_width="wrap_content" android:layout_height="wrap_content"></RadioButton>
+
+
+	</LinearLayout>
+    
+
+
+</LinearLayout>
+    

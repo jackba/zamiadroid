@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+     android:orientation="vertical"
+  
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+<AutoCompleteTextView android:text="" android:id="@+id/auto" android:layout_width="wrap_content" android:layout_height="wrap_content"></AutoCompleteTextView>
+
+<AutoCompleteTextView android:text="@+id/AutoCompleteTextView01" android:id="@+id/auto1" android:layout_width="wrap_content" android:layout_height="wrap_content"></AutoCompleteTextView>
+
+
+<Button android:text="Seleccionar Projecte" android:id="@+id/provaButton" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+<Button android:text="Importar Tesaures" android:id="@+id/thImport" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+
+<ListView android:id="@+id/listTh" android:layout_width="wrap_content" android:layout_height="wrap_content"></ListView>
+</LinearLayout>

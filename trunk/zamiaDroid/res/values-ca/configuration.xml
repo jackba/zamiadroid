@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Configuration Name strings -->
+
+    <string name="confTitleUserName">Nom d\'usuari al sistema</string>
+    <string name="confTitleLanguage">Idioma de la interfície</string>
+    <string name="confTitlePath">Directori de treball de zamiaDroid</string>
+    <string name="confTitleCoord">Sistema de coordenades</string>
+    <string name="confTitleAdvanced">Opcions avançades</string>
+    <string name="confTitleReset">Reiniciar a valors per defecte</string>
+    <string name="confTitleResetSummary">Tornar als valors inicials</string>
+    <string name="confTitleGPS">Configuració del GPS</string>
+    <string name="confTitleGPSSummary">Opcions avançades del GPS</string>
+
+    <string name="confTitleGPSActive">Activar GPS</string>
+    <string name="confTitleGPSActiveSummary">Anar a la pantalla d\'administració del GPS</string>
+    
+    <string name="reset_values">S\'han reinicialitzat els valors per defecte</string>
+    
+
+</resources>

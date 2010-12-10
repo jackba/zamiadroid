@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="uni.projecte"
+      android:versionCode="2"
+      android:versionName="1.01"
+     
+      
+      >
+      
+     
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+   	<uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>  
+    <uses-feature android:name="android.hardware.camera" />
+   	<uses-permission android:name="android.permission.VIBRATE" />
+  
+    <application android:icon="@drawable/mainicon" android:label="@string/app_name"  android:debuggable="false" android:theme="@android:style/Theme.NoTitleBar">
+    
+  
+    
+        	<uses-library android:name="com.google.android.maps" />
+    
+        <activity android:name=".Main" android:configChanges="locale"
+                  android:label="@string/app_name">
+             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+      
+        </activity>
+        
+        <activity android:name=".Sampling" android:configChanges="locale" 
+                  android:label="@string/app_name" android:screenOrientation="portrait">           
+        </activity>
+        
+        
+        <activity android:name=".CitationMap" android:configChanges="locale" 
+                  android:label="@string/app_name">
+                 
+       </activity>
+       
+         <activity android:name=".CitationEditor" android:configChanges="locale" 
+                  android:label="@string/app_name">
+                 
+       </activity>
+       
+          <activity android:name=".ActivityProvadora" android:configChanges="locale" 
+                  android:label="@string/app_name">
+                 
+       </activity>
+       
+       <activity
+        android:name=".ConfigurationActivity" android:configChanges="locale" 
+        android:label="@string/set_preferences">
+		</activity>
+		
+		
+		<!-- Project Activities -->
+		
+		
+		 <activity
+        android:name=".ProjecteChooser" android:configChanges="locale" 
+        android:label="@string/set_preferences">
+		</activity>
+           
+           
+           <activity
+        android:name=".ProjectImport" android:configChanges="locale" 
+        android:label="@string/set_preferences">
+		</activity>
+	
+	<activity
+        android:name=".CitationProjectImport" android:configChanges="locale" 
+        android:label="@string/set_preferences">
+		</activity>
+		
+		<activity
+        android:name=".ProjectInfo" android:configChanges="locale" 
+        android:label="@string/set_preferences">
+		</activity>
+		
+		  <activity android:name=".ProjectCreator" android:configChanges="locale" 
+                  android:label="@string/app_name">
+                 
+       </activity>
+       
+       
+        <activity android:name=".ProjectManagement" android:configChanges="locale" 
+                  android:label="@string/app_name">
+                 
+       </activity>
+             
+        <activity android:name=".ProjectList" android:configChanges="locale" 
+                  android:label="@string/app_name">
+                 
+         
+        </activity>
+		
+        
+        <activity android:name=".DataTypeImport" android:configChanges="locale" 
+                  android:label="@string/app_name">           
+        </activity>
+        
+        <activity android:name=".DataTypeManagement" android:configChanges="locale" 
+                  android:label="@string/app_name">           
+        </activity>
+        
+            <activity android:name=".DataTypeList" android:configChanges="locale" 
+                  android:label="@string/app_name">           
+        </activity>
+        
+         <activity android:name=".ThesaurusList" android:configChanges="locale"
+                  android:label="@string/app_name">           
+        </activity>
+        
+        
+          <activity android:name=".ResearchImport" android:configChanges="locale" 
+                  android:label="@string/app_name">
+                 
+       </activity>
+
+           <activity android:name=".SamplesList" android:configChanges="locale" 
+                  android:label="@string/app_name">
+                 
+       </activity>
+       
+             <activity android:name=".FagusImport" android:configChanges="locale" 
+                  android:label="@string/app_name">
+                 
+       </activity>
+       
+        <activity android:name=".SyncroList" android:configChanges="locale" 
+                  android:label="@string/app_name">
+                 
+       </activity>
+    
+       
+       
+         <activity android:name=".hardwareInterfaces.GPSaccess" android:configChanges="locale" 
+                  android:label="@string/app_name" android:screenOrientation="portrait">
+                 
+       </activity>
+            
+       <activity android:name=".LoginScreen" android:configChanges="locale" 
+                  android:label="@string/app_name">
+                 
+       </activity>
+       
+             
+       
+          <activity android:name=".RemoteCallAct" android:configChanges="locale" 
+                  android:label="@string/app_name">
+                 
+       </activity>
+       
+  
+        
+        
+       
+
+    
+</application>
+    <uses-sdk android:minSdkVersion="4"/>
+</manifest> 
