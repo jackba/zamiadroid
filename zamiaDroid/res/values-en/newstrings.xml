@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="chooseExportFormat">Choose export format</string>
+	<string name="chooseImportFormatCit">Choose Observations export format</string>
+	<string name="chooseImportFormatProj">Choose Project export format</string>
+	
+	<string name="projLoading">Loading project...</string>
+    <string name="projLoadingTxt">Please, don\'t close this window. Depending on the fields numbers, import process could need some minutes.</string>
+    
+   	<string name="projSuccesCreated">Project %1$s successfuly  created.</string>
+   	
+   	<string name="citFileExists">Ya existe el archivo de citas. Lo quieres sobrescribir?</string>
+    <string name="newCreatedField">The field has been created: </string>
+    
+    <string name="projSuccesCreatedWithCitations">Project created with %1$d observations</string>
+    
+	<string name="errorCitationFile">Observation file has errors</string>
+	
+	<string name="thInfoName"><b>Thesaurus name: </b></string>
+	<string name="thInfoNumItems"><b>Number of items: </b></string>
+	
+    <string name="mCreateDefProj">Create Example Project</string>
+
+    <string name="noProjectNeedCreate">There\'s no projects. You have to create or import a project.</string>
+    
+    
+    <string name="projCreationLoading">Creating project...</string>
+    <string name="projCreationTxt">Please, don\'t close this windows. Depending on fields number the process can last minutes.</string>
+    
+
+    
+    
+</resources>

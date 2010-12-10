@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ResearchTypes>
+   <Research description="Estudis de Salinitat" name="Salinitat">
+      <Attribute type="Observador">Observador</Attribute>
+      <Attribute type="enter">Quantitat de Sal</Attribute>
+   </Research>
+   <Research description="Descripcio Amplada Dunes" name="Amplada Dunes">
+      <Attribute type="Observador">Observador</Attribute>
+      <Attribute type="enter">Tipus</Attribute>
+   </Research>
+   <Research description="Estudis opinió putos gossos" name="Opinió Gossos">
+      <Attribute type="Observador">Observador</Attribute>
+      <Attribute type="resposta_S_N_NC">Entrada</Attribute>
+      <Attribute type="resposta_S_N_NC">Acord</Attribute>
+   </Research>
+      <Research description="Estudis visita espai Natural" name="Enquesta Espai Natural">
+      <Attribute type="Observador">Observador</Attribute>
+      <Attribute type="resposta_S_N_NC">Primer cop</Attribute>
+      <Attribute type="resposta_S_N_NC">Li agrada?</Attribute>
+   </Research>
+      <Research description="Sargantanes" name="Sargantanes">
+      <Attribute type="Observador">Observador</Attribute>
+      <Attribute type="Sargantana">Especie</Attribute>
+   </Research>
+</ResearchTypes>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+			android:id="@+id/home_container"  
+			android:layout_width="fill_parent" 
+			android:layout_height="fill_parent">
+
+
+
+   <com.google.android.maps.MapView
+       android:id="@+id/mapview"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+        android:clickable="true"
+       android:apiKey="0iepYHdiW7LMvYV-Y5Z8RXdD1iVnXmtL5XCU-Fg"
+
+    />
+    
+    	<!-- Feina -->
+           <!--  android:apiKey="0iepYHdiW7LOZ9_yu5sIPNeRMBwjVLbbpDohQMw"--> 
+           
+       <!-- portatil casa -->
+               <!--  android:apiKey="0iepYHdiW7LPuKkUru1YG_Mu4d3WN1q-A3lGLgg"--> 
+    	<!-- certificat androidMarket -->
+    	
+    	<!--        android:apiKey="0iepYHdiW7LMvYV-Y5Z8RXdD1iVnXmtL5XCU-Fg"-->
+    
+  		<LinearLayout  	xmlns:android="http://schemas.android.com/apk/res/android" 
+    			    android:layout_width="fill_parent" 
+        			android:layout_height="fill_parent"
+					android:orientation="vertical"
+					android:gravity="bottom|right"
+					android:paddingLeft="5px"
+					android:paddingTop="5px"
+					android:paddingRight="5px"					
+					>
+					
+			 	<uni.projecte.ui.TransparentPanel
+			    android:id="@+id/transparent_panel"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:paddingLeft="5px"
+			    android:paddingTop="5px"
+			    android:paddingRight="5px"
+			    android:paddingBottom="5px"
+			    >
+			    
+			            <TextView android:text="" android:id="@+id/locationTV" android:layout_width="wrap_content" android:layout_height="wrap_content"     android:textSize="16sp"></TextView>
+			    
+			    
+			    	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				    android:orientation="horizontal"
+				    android:layout_width="fill_parent"
+				    android:layout_height="wrap_content"
+				    android:gravity="right"
+				    >
+						
+						<ImageButton 
+						android:id="@+id/myLocationButton"
+			  			android:src="@android:drawable/ic_menu_mylocation"
+			  			android:layout_width="45px"
+			  			android:layout_height="45px"
+
+			  			
+			  			/>
+			  			
+			  			</LinearLayout>
+			  			
+			  	</uni.projecte.ui.TransparentPanel>		
+  			
+  		</LinearLayout>
+
+</FrameLayout>

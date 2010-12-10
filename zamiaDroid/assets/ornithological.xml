@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project_profile>
+
+	<SideData type="mandatory">
+	
+		<Datum label="Espècie Ocell" name="OriginalTaxonName" tip="Nom de l\'espècie de la cita.">
+			<value/>
+		</Datum>
+		
+		<Datum label="Comentari" name="CitationNotes" tip="Comentari sobre la cita">
+			<value/>
+		</Datum>
+		
+		<Datum label="Quantitat" name="Quantity" tip="Certesa de la cita">
+				<value>D3</value>
+			<predefined_values>
+				<value>D1</value>
+        		<value>D2</value>
+        		<value>D3</value>
+        		<value>D4</value>
+        		<value>D5</value>
+			</predefined_values>
+			
+		</Datum>
+		
+		<Datum label="Zona" name="Zone" tip="Zona dels Muntanyans">
+				<value>1</value>
+			<predefined_values>
+        		<value>1</value>
+        		<value>2</value>
+        		<value>3</value>
+        		<value>4</value>
+        		<value>5</value>
+			</predefined_values>
+		</Datum>
+	</SideData>
+</project_profile>

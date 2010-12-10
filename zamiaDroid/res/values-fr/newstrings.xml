@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="chooseExportFormat">Choisir un format d\'exportation</string>
+	<string name="chooseImportFormatCit">Choisir un format d\'exportation de citations</string>
+	<string name="chooseImportFormatProj">Choisir un format d\'exportation de projets</string>
+	
+	<string name="projLoading">Chargement du projet...</string>
+    <string name="projLoadingTxt">S\'il vous plait, ne fermez pas cette fenêtre. Suivant la taille de l\'ensemble des champs, l\'importation peut durer quelques minutes.</string>
+    
+   	<string name="projSuccesCreated">Le projet %1$s a été correctement crée.</string>
+   	
+   	<string name="citFileExists">Le fichier de citations déjà. Voulez vous le réécrire?</string>
+    <string name="newCreatedField">Un champ a été crée </string>
+    
+    <string name="projSuccesCreatedWithCitations">Projet crée avec %1$d citations</string>
+    
+	<string name="errorCitationFile">Il y a une erreur dans le fichier de citations</string>
+	
+	<string name="thInfoName"><b>Nom du thesaurus: </b></string>
+	<string name="thInfoNumItems"><b>Nombre d\'éléments: </b></string>
+	
+    <string name="mCreateDefProj">Créer un projet exemple</string>
+
+    <string name="noProjectNeedCreate">Il n\'y a aucun projet dans le système. Vous devez créer ou importer un nouveau projet.</string>
+
+    <string name="projCreationLoading">Création du projet...</string>
+    <string name="projCreationTxt">S\'il vous plait, ne fermez pas cette fenêtre. Suivant la taille de l\'ensemble des champs, la création peut durer quelques minutes.</string>
+    
+</resources>

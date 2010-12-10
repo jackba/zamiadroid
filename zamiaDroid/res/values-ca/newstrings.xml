@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="chooseExportFormat">Escull un format d\'exportació</string>
+	<string name="chooseImportFormatCit">Escull format d\'importació de citacions</string>
+	<string name="chooseImportFormatProj">Escull format d\'importació de projectes</string>
+	
+	<string name="projLoading">Carregant projecte...</string>
+    <string name="projLoadingTxt">Si us plau, no tenqui aquesta finestra. Depenent de la mida del conjunt de camps la importació pot trigar alguns minuts.</string>
+    
+   	<string name="projSuccesCreated">S\'ha creat el projecte %1$s correctament.</string>
+   	
+   	<string name="citFileExists">Ja existeix l\'arxiu de citacions. El vols substituir?</string>
+    <string name="newCreatedField">S\'ha creat el camp </string>
+    
+    <string name="projSuccesCreatedWithCitations">Projecte creat amb %1$d citacions</string>
+    
+	<string name="errorCitationFile">Hi ha un error al fitxer de citacions</string>
+	
+	<string name="thInfoName"><b>Nom del tesaure: </b></string>
+	<string name="thInfoNumItems"><b>Número d\'items: </b></string>
+	
+    <string name="mCreateDefProj">Crear projectes d\'exemple</string>
+    <string name="noProjectNeedCreate">No hi ha projectes al sistema. N\'has de crear un o importar-lo.</string>
+    
+</resources>

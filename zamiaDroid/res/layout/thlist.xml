@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+android:id="@+id/widget28"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="vertical"
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:padding="5px"
+>
+
+<LinearLayout
+android:id="@+id/widget28"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:padding="5px"
+>
+<TextView
+android:id="@+id/tvInfoListTh"
+android:text="@string/tvInfoListTh"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+
+>
+</TextView>
+
+
+<Button android:text="@string/bChooseTh" android:id="@+id/bChooseTh" android:layout_width="wrap_content" android:layout_height="wrap_content"  android:layout_alignParentRight="true"
+></Button>
+
+<!-- <TextView android:text="@string/tvChoosenTh" android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView> -->
+</LinearLayout>
+<LinearLayout
+android:id="@+id/linearThInfo"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:padding="5px"
+android:background="#ff333333"
+android:orientation="vertical"
+
+>    
+
+
+<TextView android:text="@+id/TextView02" android:id="@+id/tvThName" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@+id/TextView03" android:id="@+id/tvThNumItems" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+
+<AutoCompleteTextView android:text="" android:id="@+id/thAutoView" android:layout_width="fill_parent" android:layout_height="wrap_content"></AutoCompleteTextView>
+
+
+<TextView android:text="" android:id="@+id/tvIcode" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="" android:id="@+id/tvNameCode" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="" android:id="@+id/tvAuthor" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="" android:id="@+id/tvCorrect" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+
+
+<ListView android:id="@+id/thList" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"></ListView>
+
+</LinearLayout>
+
+<LinearLayout
+android:id="@+id/widget28"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:padding="5px"
+>
+
+
+<Button android:text="@string/bRemoveTh" android:id="@+id/bRemoveTh" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+
+<!-- <Button android:text="@string/bImportTh" android:id="@+id/importTh" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button> -->
+
+
+</LinearLayout>
+
+</LinearLayout>

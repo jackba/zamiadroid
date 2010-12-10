@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="chooseExportFormat">Escoge un formato de exportación</string>
+	<string name="chooseImportFormatCit">Escoge un formato de exportación de citas</string>
+	<string name="chooseImportFormatProj">Escoge un formato de exportación de proyectos</string>
+	
+	<string name="projLoading">Cargando proyecto...</string>
+    <string name="projLoadingTxt">Por favor, no cierre la ventana. Según el tamaño del conjunto de campos, la importación puede tardar algunos minutos.</string>
+    
+   	<string name="projSuccesCreated">Se ha creado el pryecto %1$s correctamente.</string>
+   	
+   	<string name="citFileExists">Ya existe el archivo de citas. Lo quieres remplazar?</string>
+    <string name="newCreatedField">Se ha creado el campo </string>
+    
+    <string name="projSuccesCreatedWithCitations">Proyecto creado con %1$d citas</string>
+    
+	<string name="errorCitationFile">Hay un error en el archivo de citas</string>
+	
+	<string name="thInfoName"><b>Nombre de el tesaurio: </b></string>
+	<string name="thInfoNumItems"><b>Número de elementos: </b></string>
+	
+    <string name="mCreateDefProj">Crear proyecto de ejemplo</string>
+    <string name="noProjectNeedCreate">No hay proyectos en el sistema. Debes crear uno o importarlo.</string>
+    
+     <string name="projCreationLoading">Creating project...</string>
+    <string name="projCreationTxt">Please, don\'t close this windows. Depending on fields number the process can last minutes.</string>
+    
+</resources>

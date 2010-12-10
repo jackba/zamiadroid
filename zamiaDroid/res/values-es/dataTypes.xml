@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!-- Tabs and activity names -->
+<string name="dtListTabName">Llista de Tipus Complexes</string>
+<string name="NewDtTabName">Crear nou DataType</string>
+<string name="dtImportTabName">Importar Tesaures</string>
+
+<!-- Research List -->
+
+<string name="tvInfoListDT"><b>Aquesta és la llista de Tipus Complexes. Si cliqueu sobre un d\'ells podreu veure les propietats del tipus de recerca. </b></string>
+
+<!-- Research Creation -->
+
+<!-- <string name="bRsCreate">Crear Nou Estudi</string>
+<string name="rsName">Nom tipus Estudi</string>
+<string name="rsAttributeName">Nom Atribut</string>
+<string name="rsAttributeType">Tipus Atribut</string>
+<string name="rsAttributesList">Llista atributs</string>
+<string name="brsAddAttribute">Afegir Atribut</string>-->
+
+<!-- Research Import -->
+
+<string name="tvDTImport">Importar Thesaures</string>
+<string name="btDTImport">Importa Tipus Complexes XML</string>
+
+
+<!-- <string name="cBurl">Carrega des de URL</string>
+<string name="cBLocal">Carrega Local</string>-->
+
+<!-- In research creation DT loaded -->
+
+<string name="spinner_prompt">Escull un tipus</string>
+
+<string name="tvDT">Llistat de tipus seleccionables</string>
+
+</resources>
+

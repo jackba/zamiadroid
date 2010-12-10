@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="fill_parent"
+  android:orientation="vertical"
+  android:padding="5px"
+  >
+<!--  
+<LinearLayout
+android:id="@+id/widget30"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="horizontal"
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:padding="5px"
+>
+<TextView android:text="@string/tvDTImport" android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<Button android:text="@string/btDTImport" android:id="@+id/btImportDataTypes" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+</LinearLayout> -->
+
+
+
+<RadioGroup
+android:id="@+id/groupTypeImportDT"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+
+>
+<RadioButton
+android:id="@+id/cBLocalDT"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="@string/cBLocal"
+>
+</RadioButton>
+
+
+<ListView android:id="@+id/thList"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"/>
+        
+        
+<!--  <EditText
+android:id="@+id/etLocalimport"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text=""
+
+>
+</EditText>-->
+
+<!-- <RadioButton
+	android:id="@+id/cBInternetDT"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="@string/cBurl"
+	>
+	</RadioButton> -->
+
+</RadioGroup>
+
+	<!-- <EditText
+	android:id="@+id/etUrLimportDT"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text=""
+	
+	>
+	</EditText>
+
+<TextView android:text="" android:id="@+id/tvImportInfoDT" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+
+ -->
+<ListView android:id="@+id/exportListDT" android:layout_width="wrap_content" android:layout_height="fill_parent"></ListView>
+
+</LinearLayout>
