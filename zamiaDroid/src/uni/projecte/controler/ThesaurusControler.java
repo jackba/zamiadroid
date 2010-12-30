@@ -562,7 +562,6 @@ public class ThesaurusControler {
 
 
 
-
 	public void changeProjectTh(long rsId,String thName) {
 
 		ResearchControler rc=new ResearchControler(c);
