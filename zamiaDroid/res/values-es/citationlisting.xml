@@ -21,6 +21,7 @@
     
     <string name="chooseField">Escoge un campo</string>
     <string name="noCitations">No hay citas</string>
+     <string name="noLocationsCitations">No hay citas con localización</string>
     
           
         

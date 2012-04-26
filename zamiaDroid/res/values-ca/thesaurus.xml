@@ -3,7 +3,7 @@
 
     <!-- Intro text thesaurus -->
 
-	<string name="tvInfoListTh">Selecciona un thesaure taxonòmic per a gestionar-lo. Pots veure les propietats de theusaure taxonòmic i esborrar-lo. També pots cercar els tàxons.</string>
+	<string name="tvInfoListTh">Llistat de tesaures taxonòmics al sistema. Pots veure els tesaures importats remotament i localment.</string>
 	<string name="thListTab">Llista de Thesaures taxonòmics</string>
 	
     <!-- Thesaurus Actions -->
@@ -24,12 +24,14 @@
 	
         <string name="bRemoveTh">Esborrar thesaure taxonòmic</string>
         <string name="deleteThQuestion">Vols esborrar el thesaure taxonòmic?</string>
-        <string name="thUsed">Thesaure taxonòmic en ús. No es pot esborrar.</string>
+        <string name="thUsedByOneProj">Thesaure taxonòmic en ús pel projecte %1s, no es pot esborrar.</string>
+        <string name="thUsedBySeveralProj">Thesaure taxonòmic en ús per %1d projectes, no es pot esborrar.</string>
 
         <!-- Change Thesaurus -->
         <string name="bChangeTh">Canviar thesaure taxonòmic</string>
         <string name="thChangedText">Thesaure taxonòmic per defecte canviat: </string>
-
+        <string name="thChangedShort">Thesaure canviat</string>
+        
         <!-- Import Thesaurus -->
             
         <string name="thName">Indiqui el nom del thesaure </string>
@@ -37,10 +39,12 @@
         <string name="thLoadingTxt">Si us plau, no tenqui aquesta finestra. Depenent de la mida del thesaure taxonòmic la importació pot trigar alguns minuts.</string>
         <string name="bImportTh">Importar Thesaure taxonòmic</string>
         <string name="sameThName">Ja existeix un Thesaure al sistema anomenat</string>
-            
+        <string formatted="false" name="thImportRepDesc">&lt;b>Thesaure %1s: &lt;/b> %2s</string>
+        <string name="thRemoteUpdated">Tesaure actualitzat ja present al sistema</string>
+        <string name="thRemoteNotUpdated">Nova actualització del tesaure: %1s</string>
 
     <!-- Thesaurus relations with projects-->
-	<string name="tvDefaultTh">Thesaure taxonòmic del sistema: </string>
+	<string name="tvDefaultTh">Thesaure taxonòmic: </string>
 	<string name="cbNoTh">Sense thesaure taxonòmic</string>
     <string name="noThQuestion">No hi ha tesaure seleccionat. Escull un o selecciona no usar thesaure taxonòmic</string>
 

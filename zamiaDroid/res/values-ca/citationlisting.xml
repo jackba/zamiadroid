@@ -12,7 +12,7 @@
     <string name="outDated">Hi ha mostres sense actualitzar</string>
     
     <string name="cLprojectName">Nom del projecte</string>
-    <string name="cLthName">Nom del tesaure taxonòmic</string>
+    <string name="cLthName">Tesaure taxonòmic</string>
     <string name="tvFilteredCitations">Citacions filtrades /</string>
     
     <string name="tvFilteredField"><b>Visualitzant citacions pel camp: </b></string>

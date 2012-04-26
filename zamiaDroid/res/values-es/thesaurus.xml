@@ -24,11 +24,15 @@
 	
         <string name="bRemoveTh">Borrar tesauro taxonómico</string>
         <string name="deleteThQuestion">Quieres borrar el tesauro taxonómico?</string>
-        <string name="thUsed">Tesauro taxonómico en uso. No se puede borrar.</string>
-
+        <string name="thUsedByOneProj">Tesauro taxonómico en uso por el proyecto %1s, no se puede borrar.</string>
+        <string name="thUsedBySeveralProj">Tesauro taxonómico en uso por %1d proyectos, no se puede borrar.</string>
+        
+        
         <!-- Change Thesaurus -->
         <string name="bChangeTh">Cambiar tesauro taxonómico</string>
         <string name="thChangedText">Tesauro taxonómico por defecto cambiado: </string>
+        <string name="thChangedShort">Tesauro cambiado</string>
+        
 
         <!-- Import Thesaurus -->
             
@@ -37,10 +41,12 @@
         <string name="thLoadingTxt">Por favor, no cierrer esta ventana. Según el temaño del tesauro taxonómico la importación puede tardar algunos minutos.</string>
         <string name="bImportTh">Importar Tesauro taxonómico</string>
         <string name="sameThName">Ya existe un Tesauro al sitema que se llama</string>
-            
+        <string formatted="false" name="thImportRepDesc">&lt;b>Tesauro %1s: &lt;/b> %2s</string>
+        <string name="thRemoteUpdated">Tesauro actualitzada ya existente en el sistema</string>
+        <string name="thRemoteNotUpdated">Nueva actualización del tesauro: %1s</string>
 
     <!-- Thesaurus relations with projects-->
-	<string name="tvDefaultTh">Tesauro taxonómico del sistema: </string>
+	<string name="tvDefaultTh">Tesauro taxonómico: </string>
 	<string name="cbNoTh">Sin tesauro taxonómico</string>
     <string name="noThQuestion">No hay tesauro seleccionado. Escoge uno o selecciona no usar tesauro taxonómico</string>
 

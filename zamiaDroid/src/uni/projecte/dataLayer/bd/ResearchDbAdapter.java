@@ -74,19 +74,23 @@ public class ResearchDbAdapter {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
-        public void onCreate(SQLiteDatabase db) {
+        @Override
+		public void onCreate(SQLiteDatabase db) {
 
             db.execSQL(DATABASE_CREATE);
             
 
         }
 
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        @Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
                     + newVersion + ", which will destroy all old data");
             db.execSQL("DROP TABLE IF EXISTS notes");
             onCreate(db);
         }
+        
+        
     }
 
     /**
@@ -113,10 +117,23 @@ public class ResearchDbAdapter {
         mDb = mDbHelper.getWritableDatabase();
         return this;
     }
+ 
+    
     
     public void close() {
         mDbHelper.close();
     }
+    
+    
+    public void deleteDatabase() {
+        mDbHelper.close();
+        mDb.close();
+        if (mCtx.deleteDatabase(DATABASE_NAME)) {
+          Log.d(TAG, "deleteDatabase(): database deleted.");
+        } else {
+          Log.d(TAG, "deleteDatabase(): database NOT deleted.");
+        }
+      } 
 
 
     /**
@@ -141,9 +158,7 @@ public class ResearchDbAdapter {
         	result=mDb.insert(DATABASE_TABLE, null, initialValues);
         }
         catch (SQLiteConstraintException sqle){
-        	
-        	System.out.println("VAlor repetit");
-        	
+        	        	
         	result=-1;
         	
         }

@@ -52,12 +52,11 @@ public class CitacionDbAdapter {
     public static final String FIELD_NAME = "fieldName";
 
 
-
-    
-
     private static final String TAG = "SampleDbAdapter";
-    private DatabaseHelper mDbHelper;
-    private SQLiteDatabase mDb;
+    
+    
+    protected DatabaseHelper mDbHelper;
+    protected SQLiteDatabase mDb;
     
     /**
      * Database creation sql statement
@@ -85,8 +84,8 @@ public class CitacionDbAdapter {
         + FIELD_NAME + " TEXT"
         + ");";
 
-    private static final String DATABASE_TABLE_FIELD = "CitationFieldTable";
-    private static final String DATABASE_TABLE_CITATION = "CitationTable";
+    protected static final String DATABASE_TABLE_FIELD = "CitationFieldTable";
+    protected static final String DATABASE_TABLE_CITATION = "CitationTable";
     
     private static final String DATABASE_NAME= "Citation";
     private static final int DATABASE_VERSION = 2;
@@ -94,7 +93,7 @@ public class CitacionDbAdapter {
     private final Context mCtx;
     
 
-    private static class DatabaseHelper extends SQLiteOpenHelper {
+    static class DatabaseHelper extends SQLiteOpenHelper {
 
         DatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -206,6 +205,24 @@ public class CitacionDbAdapter {
 
         return mDb.insert(DATABASE_TABLE_CITATION, null, initialValues);
     }
+    
+    
+    public long createCitationWithDate(long rsId, double latitude, double longitude, String comment,String date) {
+        
+
+    	ContentValues initialValues = new ContentValues();
+        initialValues.put(KEY_RS, rsId);
+        initialValues.put(LATITUDE , latitude);
+        initialValues.put(LONGITUDE , longitude);
+        initialValues.put(COMMENT , comment);
+        initialValues.put(DATE , date);
+
+        
+        initialValues.put(SINCRONIZED , 0);
+        
+
+        return mDb.insert(DATABASE_TABLE_CITATION, null, initialValues);
+    }
 
     /**
      * Delete the Sample with the given rowId
@@ -278,6 +295,24 @@ public class CitacionDbAdapter {
     }
     
     
+	public boolean isTimestampAvailable(long projId, String presettedDate) {
+
+		 Cursor mCursor =
+
+             mDb.query(true, DATABASE_TABLE_CITATION, new String[] {KEY_ROWID,
+             		KEY_RS,
+                     LATITUDE,LONGITUDE,DATE,SINCRONIZED}, KEY_RS + "=" + projId +" AND "+ DATE +" = "+"\""+presettedDate+"\"", null,
+                     null, null, null, null);
+     
+		 if (mCursor != null) {
+			 
+			 mCursor.moveToFirst();
+         
+		 }
+		
+		return mCursor.getCount()<1;
+	}
+    
     
     public Cursor fetchSampleBySampleId(long rowId) throws SQLException {
 
@@ -308,6 +343,24 @@ public class CitacionDbAdapter {
 
     }
     
+    public Cursor fetchCitationByCitationId(long citationId) throws SQLException {
+
+        Cursor mCursor =
+
+               mDb.query(true, DATABASE_TABLE_CITATION, new String[] {KEY_ROWID,
+               		KEY_RS,
+                       LATITUDE,LONGITUDE,DATE,SINCRONIZED}, KEY_ROWID + "=" + citationId, null,
+                       null, null, null, null);
+       
+       
+       if (mCursor != null) {
+       	
+           mCursor.moveToFirst();
+       }
+       return mCursor;
+
+   }
+    
     public Cursor fetchUnsyncronisedSamples(long rowId) throws SQLException {
 
          Cursor mCursor =
@@ -320,7 +373,6 @@ public class CitacionDbAdapter {
         
         if (mCursor != null) {
         	
-        	Log.d(TAG,"Cursor diferent de NUll");
             mCursor.moveToFirst();
         }
         return mCursor;
@@ -423,6 +475,8 @@ public class CitacionDbAdapter {
  
     }
     
+
+    
     
    public Cursor fetchSampleByField(long projId, long citationId, String field) throws SQLException {
 
@@ -450,7 +504,7 @@ public class CitacionDbAdapter {
 
    	
    		c=mDb.rawQuery("SELECT CitationTable._id as _id,value,date,CitationFieldTable._id as idField,latitude,longitude FROM " + DATABASE_TABLE_FIELD+","+DATABASE_TABLE_CITATION
-				+ " WHERE idRs="+projId+" and CitationTable._id="+CitacionDbAdapter.KEY_SAMPLE_ID+ " and fieldName=\""+field+"\" GROUP BY CitationTable._id ORDER BY idField;",null);
+				+ " WHERE idRs="+projId+" and CitationTable._id="+CitacionDbAdapter.KEY_SAMPLE_ID+ " and fieldName=\""+field+"\" GROUP BY CitationTable._id ORDER BY date DESC;",null);
 
  
    	
@@ -461,8 +515,76 @@ public class CitacionDbAdapter {
    	  
 
    }
+   
+   
+   public Cursor fetchCitationsByFieldValue(long projId, long fieldId,String value, boolean alphaOrder) throws SQLException {
+	   	
+	   	Cursor c;
+	   	
+	   	String orderBy="ORDER BY date DESC";
+	   	
+   		if(alphaOrder) orderBy="ORDER BY value";
+   		
+	   	
+	   		c=mDb.rawQuery("SELECT CitationTable._id as _id,value,date,CitationFieldTable._id as idField,latitude,longitude FROM " + DATABASE_TABLE_FIELD+","+DATABASE_TABLE_CITATION
+					+ " WHERE idRs="+projId+" and CitationTable._id="+CitacionDbAdapter.KEY_SAMPLE_ID+" and value=\""+value+"\" and idAttType="+fieldId+" GROUP BY CitationTable._id "+orderBy+";",null);
 
- 
+	   	
+	   	c.moveToFirst();
+	   	
+	   	return c;
+	   	  
+	   	  
+
+	   }
+   
+   
+   public Cursor fetchCitationsByDate(long projId, String comparator,String value,boolean alphaOrder) throws SQLException {
+	   	
+	   	Cursor c;
+	   	String orderBy="";
+	   	
+	   		if(alphaOrder) orderBy="ORDER BY value";
+	   	
+	   		c=mDb.rawQuery("SELECT CitationTable._id as _id,value,date,CitationFieldTable._id as idField,latitude,longitude FROM " + DATABASE_TABLE_FIELD+","+DATABASE_TABLE_CITATION
+					+ " WHERE idRs="+projId+" and CitationTable._id="+CitacionDbAdapter.KEY_SAMPLE_ID+" and strftime('%Y-%m-%d',date)"+comparator+"\'"+value+"\' and fieldName=\"OriginalTaxonName\" GROUP BY CitationTable._id "+orderBy+";",null);
+
+	   	
+	   	c.moveToFirst();
+	   	
+	   	return c;
+	   	  
+	   	  
+
+	   }
+   
+	public Cursor fetchCitationsByFieldValue(long projId, long fieldId, float value, String comp) {
+		
+		
+		
+		return null;
+	}
+        
+   
+   public Cursor fetchSamplesByFieldOrdered(long projId, String field) throws SQLException {
+
+	   	
+	   	Cursor c;
+
+	   	
+	   		c=mDb.rawQuery("SELECT CitationTable._id as _id,value,date,CitationFieldTable._id as idField,latitude,longitude FROM " + DATABASE_TABLE_FIELD+","+DATABASE_TABLE_CITATION
+					+ " WHERE idRs="+projId+" and CitationTable._id="+CitacionDbAdapter.KEY_SAMPLE_ID+ " and fieldName=\""+field+"\" GROUP BY CitationTable._id ORDER BY value;",null);
+
+	 
+	   	
+	   	c.moveToFirst();
+	   	
+	   	return c;
+	   	  
+	   	  
+
+	   }
+
     
     
     
@@ -547,18 +669,18 @@ public class CitacionDbAdapter {
     
     public void startTransaction(){
     	
-      	 mDb.beginTransaction();
-      	
-      	
-      	
-      }
-      public void endTransaction(){
-      	
-      	mDb.setTransactionSuccessful();
-      	mDb.endTransaction();
-      	
-      	
-      }
+     	 mDb.beginTransaction();
+     	
+     	
+     	
+     }
+     public void endTransaction(){
+     	
+     	mDb.setTransactionSuccessful();
+     	mDb.endTransaction();
+     	
+     	
+     }
     
       public Cursor fetchSamplesByFieldId(long sampleAttId) throws SQLException {
 
@@ -567,6 +689,14 @@ public class CitacionDbAdapter {
                    VALUE}, KEY_TIPUS_ATRIB + "=" + sampleAttId, null, null, null, null);
     
     }
+      
+      public Cursor fetchSamplesByFieldIdAndCitationId(long citationId,long sampleAttId) throws SQLException {
+
+        	
+   	   return mDb.query(DATABASE_TABLE_FIELD, new String[] {KEY_ROWID,KEY_SAMPLE_ID, KEY_TIPUS_ATRIB,
+                  VALUE}, KEY_TIPUS_ATRIB + "=" + sampleAttId+" and "+ KEY_SAMPLE_ID + " = "+ citationId, null, null, null, null);
+   
+   }
        
     
     public Cursor fetchSampleAttributeBySampleAttId(long sampleId, long sampleAttId) throws SQLException {
@@ -582,11 +712,78 @@ public class CitacionDbAdapter {
     public boolean updateSampleFieldValue(long sampleId, long sampleAttId,String newValue) {
         
     	ContentValues vals = new ContentValues();
-    		vals.put(VALUE,newValue);
+    	vals.put(VALUE,newValue);
     		
     		
           return mDb.update(DATABASE_TABLE_FIELD, vals,  KEY_TIPUS_ATRIB + "=" + sampleAttId+" and "+ KEY_SAMPLE_ID + "="
                   +sampleId , null) > 0;
                   
     }
+    
+   public boolean updateCitationFieldValue(long citationId, long citationFieldId,String newValue) {
+        
+    	ContentValues vals = new ContentValues();
+    	vals.put(VALUE,newValue);
+    		
+    		
+          return mDb.update(DATABASE_TABLE_FIELD, vals,  KEY_SAMPLE_ID + "=" + citationId+" and "+ KEY_ROWID + "="
+                  +citationFieldId , null) > 0;
+                  
+    }
+    
+    public Cursor fetchCitationIdByPhotoField(String photo) throws SQLException {
+    	
+    	   return mDb.query(DATABASE_TABLE_FIELD, new String[] {KEY_ROWID,KEY_SAMPLE_ID, KEY_TIPUS_ATRIB,
+                   VALUE}, VALUE + "=\""+photo+"\"", null, null, null, null);
+    
+    }
+
+	public boolean checkRepeated(long projId,long citationId, double latitude, double longitude, String date) {
+
+		
+        Cursor mCursor =
+
+                mDb.query(true, DATABASE_TABLE_CITATION, new String[] {KEY_ROWID,KEY_RS,
+                LATITUDE,LONGITUDE,DATE,SINCRONIZED}, KEY_RS + "=" + projId + " and " + LATITUDE + "=" + latitude + " and " + LONGITUDE + "=" + longitude + " and " + DATE + " = \"" + date + "\"" , null,
+                        null, null, null, null);
+            mCursor.moveToFirst();
+        
+         if(mCursor.getCount()>0){
+        	 
+        	 mDb.delete(DATABASE_TABLE_CITATION, KEY_ROWID + "=" + citationId, null);
+        	 
+        	 mCursor.close();
+        	 return true;
+        	 
+         }   
+         else{
+        	 
+        	 mCursor.close();
+        	 
+        	 return false;
+        	 
+         }
+        
+
+       
+
+	}
+
+	public Cursor fetchSheetField(long sampleId) {
+     	
+	   	   return mDb.query(DATABASE_TABLE_FIELD, new String[] {KEY_ROWID,KEY_SAMPLE_ID, KEY_TIPUS_ATRIB,
+	                  VALUE},"(" + FIELD_NAME + "=\"Sheet\" or "+ FIELD_NAME + "=\"Plec\" ) and " + KEY_SAMPLE_ID + " = "+ sampleId, null, null, null, null);
+	   
+	   }
+
+	public Cursor fetchTaxonsByProjId(long projId) {
+
+
+		
+		return null;
+	}
+
+
+
+
 }

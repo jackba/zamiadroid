@@ -157,46 +157,28 @@ android:padding="5px"
 
 
 			 <Button android:text="@string/bCreateSample" android:padding="6dp" android:id="@+id/bCreateSample" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/btn_default_normal"></Button>
+			 <LinearLayout android:id="@+id/linearLayout1" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="left">
+			     <LinearLayout android:id="@+id/linearLayout2" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+			         <TextView android:padding="2px" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/citCoord" android:textSize="12sp" android:id="@+id/tvCoordinatesLabel"></TextView>
+			         <TextView android:text="TextView" android:layout_width="wrap_content" android:textSize="12sp" android:id="@+id/tvLocation" android:layout_height="wrap_content"></TextView>
+			     </LinearLayout>
+			     
+			     <LinearLayout android:id="@+id/linearLayout3" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+			         <TextView android:padding="2px" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/citAltitude" android:id="@+id/TextView01" android:textSize="12sp"></TextView>
+			         <TextView android:layout_width="wrap_content" android:text="" android:layout_height="wrap_content" android:id="@+id/tvAltitude" android:textSize="12sp"></TextView>
+			         <TextView android:layout_width="wrap_content" android:id="@+id/tvUnits" android:layout_height="wrap_content" android:text=" (m)" android:textSize="11sp"></TextView>
+			         <TextView android:layout_height="wrap_content" android:text="TextView" android:layout_width="wrap_content" android:visibility="gone" android:textSize="11sp" android:id="@+id/tvSettedDate" android:layout_marginLeft="2dp"></TextView>		         
+			     </LinearLayout>
+	
+			 </LinearLayout>
 
  
-
- 
- 
- 				<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 				    android:orientation="horizontal"
 				    android:layout_width="fill_parent"
 				    android:layout_height="wrap_content"
 				    android:gravity="right"
 				    >
-				        
-				        
-						 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-						    android:orientation="vertical"
-						    android:layout_width="wrap_content"
-						    android:layout_height="wrap_content">
-						    
-						 
-								 <TextView 
-								    android:text="@string/location" 
-								    android:id="@+id/TextView01" 
-								    android:layout_width="wrap_content" 
-								    android:layout_height="wrap_content"
-								    android:padding="5px"
-								    android:textSize="12sp"
-								    
-								    >
-								            
-								    </TextView>
-								
-								 <TextView android:text="" android:id="@+id/tvLocation" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="12sp"></TextView>
-								 						 
-						 
-						 </LinearLayout>
-			
-					  
-							 
-					<Button android:text="@string/bUpdateLocation" android:id="@+id/bUpdateLocation" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-							 
 				
 				       
 				 
@@ -204,7 +186,8 @@ android:padding="5px"
 				    <!--     <Button android:text="@string/bFinish" android:id="@+id/bFinish" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button> -->
 				        
 				        
-				       <!--  <CheckBox android:text="@string/cBtextNoGeo" android:id="@+id/cbNoGeo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="12sp"></CheckBox> -->			   
+				       <!--  <CheckBox android:text="@string/cBtextNoGeo" android:id="@+id/cbNoGeo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="12sp"></CheckBox> -->
+ 				<Button android:layout_width="wrap_content" android:text="@string/bUpdateLocation" android:layout_height="wrap_content" android:id="@+id/bUpdateLocation"></Button>			   
 	
 			</LinearLayout>
 

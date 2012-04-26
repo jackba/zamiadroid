@@ -56,6 +56,9 @@
     
     <string name="backFromProjectCreation">Do you want to leave projects creation? Unsaved data will be lost.</string>
     
+     <string name="projCreationLoading">Creating project...</string>
+    <string name="projCreationTxt">Please, don\'t close the dialog. Process can take several minutes.</string>
+    
     <!-- Research Import -->
 
     <string name="tvRsImport">Import Projects</string>

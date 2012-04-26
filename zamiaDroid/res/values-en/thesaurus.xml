@@ -23,13 +23,15 @@
         <!-- Removal -->
 	
         <string name="bRemoveTh">Delete taxonomic thesaurus</string>
-        <string name="deleteThQuestion">Do you want to delete this taxonomic thesaurus?</string>
-        <string name="thUsed">Taxonomic thesaurus in use. It can not be deleted.</string>
+        <string name="deleteThQuestion">Do you want to delete this taxonomic thesaurus?</string>       
+        <string name="thUsedByOneProj">Taxonomic thesaurus in use by %1s project, it can not be deleted.</string>
+        <string name="thUsedBySeveralProj">Taxonomic thesaurus in use by %1d projects, it can not be deleted.</string>
 
         <!-- Change Thesaurus -->
         <string name="bChangeTh">Change taxonomic thesaurus</string>
         <string name="thChangedText">Default taxonomic thesaurus changed: </string>
-
+        <string name="thChangedShort">Changed thesaurus</string>
+        
         <!-- Import Thesaurus -->
             
         <string name="thName">Indicate thesaurus name </string>
@@ -37,11 +39,13 @@
         <string name="thLoadingTxt">Please do not close this window. The import process may take a few minutes, depending on the size of the taxonomic thesaurus.</string>
         <string name="bImportTh">Import taxonomic thesaurus</string>
         <string name="sameThName">There already is an existing thesaurus in the system, called</string>
-            
+        <string formatted="false" name="thImportRepDesc">&lt;b>Thesaurus %1s: &lt;/b> %2s</string>
+        <string name="thRemoteUpdated">Existing thesaurus updated</string>
+        <string name="thRemoteNotUpdated">New thesaurus\' update: %1s</string>
 
-    <!-- Thesaurus relations with projects-->
-	<string name="tvDefaultTh">Taxonomic thesaurus of the system: </string>
-	<string name="cbNoTh">Without taxonomic thesaurus</string>
-    <string name="noThQuestion">No selected thesaurus. Choose one or select not using taxonomic thesaurus</string>
+    	<!-- Thesaurus relations with projects-->
+		<string name="tvDefaultTh">Taxonomical thesaurus: </string>
+		<string name="cbNoTh">Without taxonomic thesaurus</string>
+    	<string name="noThQuestion">No selected thesaurus. Choose one or select not using taxonomic thesaurus</string>
 
 </resources>

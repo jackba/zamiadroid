@@ -18,5 +18,10 @@
     
     <string name="reset_values">S\'han reinicialitzat els valors per defecte</string>
     
+    
+     <string name="confGPSGeoid">Correcció del Geoide (alçada)</string>
+    
+    <string name="updateGPSWhenTaxon">GPS quan s\'afegeixi tàxon</string>
+	<string name="updateGPSWhenTaxonSummary">El GPS es tornarà a actualitzar quan s\'omple el camp tàxon si n\'hi ha</string>	
 
 </resources>

@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="uni.projecte"
-      android:versionCode="2"
-      android:versionName="1.01"
-     
-      
+      android:versionCode="21"
+      android:versionName="1.7.6"
       >
-      
-     
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
    	<uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>  
     <uses-feature android:name="android.hardware.camera" />
    	<uses-permission android:name="android.permission.VIBRATE" />
+   	
+   	<uses-permission android:name="com.google.android.apps.mytracks.READ_TRACK_DATA" />
+	<uses-permission android:name="com.google.android.apps.mytracks.WRITE_TRACK_DATA" />
   
-    <application android:icon="@drawable/mainicon" android:label="@string/app_name"  android:debuggable="false" android:theme="@android:style/Theme.NoTitleBar">
+  <!--  <application android:icon="@drawable/mainicon" android:label="@string/app_name"  android:debuggable="true" android:theme="@android:style/Theme.NoTitleBar">
     
-  
+   --> 
+   
+     <application android:icon="@drawable/mainicon" android:label="ZamiaDroid" android:theme="@android:style/Theme.NoTitleBar">
+   
     
         	<uses-library android:name="com.google.android.maps" />
     
@@ -29,29 +32,89 @@
             </intent-filter>
       
         </activity>
+      
+            
+       <activity android:name=".Activities.Citations.ZamiaCitationImport" android:configChanges="locale"
+                  android:label="ZamiaImport">   
+           
+           <!--   <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>   
+           -->
+           
+        </activity> 
         
-        <activity android:name=".Sampling" android:configChanges="locale" 
+            <activity android:name=".Activities.Thesaurus.ThesaurusRemoteImport" android:configChanges="locale"
+                  android:label="ZamiaImport">   
+           
+          <!--    <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>   
+              -->
+          
+           
+        </activity> 
+        
+         <activity android:name=".TrackListChooser" android:configChanges="locale"
+                  android:label="Track List">
+      
+        </activity>  
+           
+                <activity android:name=".Activities.Miscelaneous.GalleryGrid" android:configChanges="orientation|locale"
+                  android:label="@string/app_name">
+      
+        </activity>      
+             
+        <activity android:name=".Activities.Citations.Sampling" android:configChanges="orientation|locale" 
+                  android:label="@string/app_name">           
+        </activity>
+        
+        <activity android:name="Activities.Citations.SecondLevelSampling" android:configChanges="locale" 
                   android:label="@string/app_name" android:screenOrientation="portrait">           
         </activity>
         
         
-        <activity android:name=".CitationMap" android:configChanges="locale" 
+                  <activity android:name=".Activities.Citations.SecondLevelList" android:configChanges="locale" 
+                  android:label="@string/app_name">           
+        </activity>
+        
+        <activity android:name=".CitationMap" android:configChanges="orientation|locale"
                   android:label="@string/app_name">
                  
        </activity>
        
-         <activity android:name=".CitationEditor" android:configChanges="locale" 
+         <activity android:name=".Activities.Citations.CitationEditor" android:configChanges="locale" 
                   android:label="@string/app_name">
                  
        </activity>
        
-          <activity android:name=".ActivityProvadora" android:configChanges="locale" 
-                  android:label="@string/app_name">
+        <activity android:name=".Activities.Miscelaneous.ImageGallery" android:configChanges="locale" 
+                  android:label="@string/app_name">         
+       </activity>
+       
+          <activity android:name=".Activities.Thesaurus.ThesaurusPlainImport" android:configChanges="locale" android:label="Zamia Activitat de Prova">
                  
        </activity>
        
-       <activity
-        android:name=".ConfigurationActivity" android:configChanges="locale" 
+     <activity android:name=".Activities.Thesaurus.ThesaurusRemote" android:configChanges="locale" android:label="Zamia Activitat de Prova">
+                  
+
+                 
+       </activity>
+       
+         <activity android:name=".Activities.Projects.ProjectTemplateCreator" android:configChanges="locale" android:theme="@style/ZamiaTheme"
+                  android:label="@string/app_name">
+                  
+        <!--    <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->   
+                 
+       </activity>
+       
+          <activity android:name=".Activities.Miscelaneous.ConfigurationActivity" android:configChanges="locale" 
         android:label="@string/set_preferences">
 		</activity>
 		
@@ -60,33 +123,57 @@
 		
 		
 		 <activity
-        android:name=".ProjecteChooser" android:configChanges="locale" 
+        android:name=".Activities.Projects.ProjecteChooser" android:configChanges="locale" 
         android:label="@string/set_preferences">
 		</activity>
            
            
-           <activity
-        android:name=".ProjectImport" android:configChanges="locale" 
-        android:label="@string/set_preferences">
-		</activity>
-	
-	<activity
-        android:name=".CitationProjectImport" android:configChanges="locale" 
+           <activity android:name=".Activities.Projects.ProjectImport" android:configChanges="locale" 
         android:label="@string/set_preferences">
 		</activity>
 		
 		<activity
-        android:name=".ProjectInfo" android:configChanges="locale" 
+        android:name=".Activities.Projects.ProjectRepositoryList" android:configChanges="locale" 
         android:label="@string/set_preferences">
 		</activity>
 		
-		  <activity android:name=".ProjectCreator" android:configChanges="locale" 
+				 <activity android:name=".Activities.Projects.ProjectBackupList" android:configChanges="locale" 
+        android:label="@string/set_preferences">
+		</activity>
+           
+		
+	
+	<activity
+        android:name=".Activities.Citations.CitationProjectImport" android:configChanges="locale" 
+        android:label="@string/set_preferences">
+		</activity>
+		
+	<activity android:name=".Activities.Projects.ProjectInfo" android:configChanges="locale" 
+        android:label="@string/set_preferences">
+		</activity>
+		
+				<activity
+        android:name=".Activities.Projects.SubProjectInfo" android:configChanges="locale"       android:label="@string/set_preferences">
+		</activity>
+		
+				
+   		<activity android:name=".Activities.Projects.ProjectFieldChooser" android:configChanges="locale" 
+        android:label="@string/set_preferences">
+		</activity>
+		
+		
+			<activity
+        android:name=".ProjectFieldChooser" android:configChanges="locale" 
+        android:label="@string/set_preferences">
+		</activity>
+		
+		  <activity android:name=".Activities.Projects.ProjectCreator" android:configChanges="locale" 
                   android:label="@string/app_name">
                  
        </activity>
        
        
-        <activity android:name=".ProjectManagement" android:configChanges="locale" 
+        <activity android:name=".ProjectManagement" android.Activities.Projects.ProjectListes="locale" 
                   android:label="@string/app_name">
                  
        </activity>
@@ -96,9 +183,7 @@
                  
          
         </activity>
-		
-        
-        <activity android:name=".DataTypeImport" android:configChanges="locale" 
+		.Activities.Thesaurus.ThesaurusImport   <activity android:name="ThesaurusImport" android:configChanges="locale" 
                   android:label="@string/app_name">           
         </activity>
         
@@ -110,7 +195,12 @@
                   android:label="@string/app_name">           
         </activity>
         
-         <activity android:name=".ThesaurusList" android:configChanges="locale"
+         <activity android:name=".Activities.Thesaurus.ThesaurusInfo" android:configChanges="locale"
+                  android:label="@string/app_name">           
+        </activity>
+        
+        
+       <activity android:name=".Activities.Thesaurus.ThesaurusManagerame" android:configChanges="locale"
                   android:label="@string/app_name">           
         </activity>
         
@@ -120,12 +210,17 @@
                  
        </activity>
 
-           <activity android:name=".SamplesList" android:configChanges="locale" 
+           <activity android:name="CitationManager" android:configChanges="locale" 
                   android:label="@string/app_name">
                  
        </activity>
        
-             <activity android:name=".FagusImport" android:configChanges="locale" 
+       
+           <activity android:name=".Activities.Citations.NewCitationManager" android:configChanges="orientation|locale" 
+                  android:label="@string/app_name">
+                 
+       </activity>
+   .Activities.Citations.CitationImport   <activity android:name=".CitationImport" android:configChanges="locale" 
                   android:label="@string/app_name">
                  
        </activity>
@@ -142,23 +237,54 @@
                  
        </activity>
             
-       <activity android:name=".LoginScreen" android:configChanges="locale" 
+       <activity android:name=".Activities.Miscelaneous.LoginScreen" android:configChanges="locale" 
                   android:label="@string/app_name">
                  
        </activity>
        
              
        
-          <activity android:name=".RemoteCallAct" android:configChanges="locale" 
+          <activity android:name="RemoteCallAct" android:configChanges="locale" 
                   android:label="@string/app_name">
                  
        </activity>
        
-  
-        
-        
+            <activity android:name="TaxonExplorer" android:configChanges="locale" 
+                  android:label="@string/app_name">
+                 
+       	</activity>
+       	
+       	         <activity android:name="TaxonRemoteCitationList" android:configChanges="locale" 
+                  android:label="@string/app_name">
+                 
+       	</activity>
+       	
+       	      <activity android:name="TaxonListExplorer" android:configChanges="orientation|locale"
+                  android:label="@string/app_name">
+                 
+       	</activity>
        
-
+                  <activity android:name="DBLocation" android:configChanges="locale" 
+                  android:label="DB Location">
+                  
+          <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter> -->
+                 
+       </activity>  
+       
+               <activity android:name=".RemoteDBConfig" android:configChanges="locale" 
+                  android:label="@string/app_name">
+                  
+          <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter> -->
+                 
+       </activity>  
+        
+      
     
 </application>
     <uses-sdk android:minSdkVersion="4"/>

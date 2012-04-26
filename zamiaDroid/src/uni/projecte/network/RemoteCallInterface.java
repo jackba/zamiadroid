@@ -16,7 +16,7 @@
 
 package uni.projecte.network;
 
-import uni.projecte.LoginScreen;
+import uni.projecte.Activities.Miscelaneous.LoginScreen;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -107,7 +107,7 @@ public class RemoteCallInterface{
     	
     	//falta comprovar que tinguin la mateixa mida
     	
-    	Intent intent = new Intent(c,uni.projecte.RemoteCallAct.class);
+    	Intent intent = new Intent(c,uni.projecte.Activities.RemoteDBs.RemoteCallAct.class);
 		Bundle b;
 		
 		b = new Bundle();

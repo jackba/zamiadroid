@@ -23,11 +23,13 @@ public class ProjectField{
 	private String name;
 	private String type;
 	private String desc;
+	private int visible;
 
 
 	private long id;
 	private String label;
 	private String value;
+	private int order;
 	private ArrayList<String> predValues;
 
 	
@@ -53,6 +55,35 @@ public class ProjectField{
 
 		
 	}
+	
+	public ProjectField (long fieldId,String nom, String type, String label,String value,int order,int visible){
+		
+		this.id=fieldId;
+		this.name=nom;
+		//this.desc=desc;
+		this.label=label;
+		this.value=value;
+		this.type=type;
+		this.order=order;
+		this.visible=visible;
+		predValues=new ArrayList<String>();
+
+		
+	}
+
+	public ProjectField (long fieldId,String nom, String desc, String label,String value,String type){
+		
+		this.id=fieldId;
+		this.name=nom;
+		this.desc=desc;
+		this.label=label;
+		this.value=value;
+		this.type=type;
+		predValues=new ArrayList<String>();
+
+		
+	}
+	
 	public ProjectField (String nom, String desc, String label,String value,String type){
 		
 		this.name=nom;
@@ -64,6 +95,19 @@ public class ProjectField{
 
 		
 	}
+	
+	public ProjectField (String nom, String desc, String label,String value,String type, ArrayList<String> predValues){
+		
+		this.name=nom;
+		this.desc=desc;
+		this.label=label;
+		this.value=value;
+		this.type=type;
+		this.predValues=predValues;
+
+		
+	}
+
 	
 	public void insertPredValue(String value){
 		
@@ -78,14 +122,18 @@ public class ProjectField{
 		
 	}
 	
+	public void setPredValues(ArrayList <String> predValuesList){
+		
+		predValues=predValuesList;
+		
+	}
 	public ProjectField (long id,String nom, String tipus, String label,String value){
 		
 		this.id=id;
 		this.name=nom;
 		this.type=tipus;
 		this.label=label;
-		this.value=value;
-
+	
 		
 }
 
@@ -116,6 +164,11 @@ public class ProjectField{
 		this.name = nom;
 	}
 
+	
+	public void setValue(String value) {
+		this.value = value;
+	}
+
 
 	public String getType() {
 		return type;
@@ -124,6 +177,22 @@ public class ProjectField{
 
 	public void setType(String tipus) {
 		this.type = tipus;
+	}
+
+	public int getVisible() {
+		return visible;
+	}
+
+	public void setVisible(int visible) {
+		this.visible = visible;
+	}
+
+	public int getOrder() {
+		return order;
+	}
+
+	public void setOrder(int order) {
+		this.order = order;
 	}
 	
 }

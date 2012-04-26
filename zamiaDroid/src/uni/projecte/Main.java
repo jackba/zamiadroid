@@ -20,25 +20,39 @@ package uni.projecte;
 import java.io.File;
 import java.util.Locale;
 
+import uni.projecte.Activities.Citations.CitationManager;
+import uni.projecte.Activities.Citations.Sampling;
+import uni.projecte.Activities.Maps.CitationMap;
+import uni.projecte.Activities.Miscelaneous.ConfigurationActivity;
+import uni.projecte.Activities.Projects.ProjectManagement;
+import uni.projecte.controler.BackupControler;
 import uni.projecte.controler.PreferencesControler;
-import uni.projecte.controler.ResearchControler;
+import uni.projecte.controler.ProjectControler;
+import uni.projecte.dataTypes.Utilities;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,54 +68,109 @@ public class Main extends Activity {
 	public static final int CONFIGURATION = Menu.FIRST;
 	public static final int PROJECT_CHOOSE = Menu.FIRST+1;
 	public static final int ABOUT_US = Menu.FIRST+2;
+	public static final int BACKUP = Menu.FIRST+3;
 
 	public static final String PREF_FILE_NAME = "PredProject";
 	private SharedPreferences preferences;
 	private SharedPreferences configPrefs;
-	private PreferencesControler pc;
+	private PreferencesControler prefCnt;
 	
+	private Location currentLocation;
+	
+	private TextView locality;
+	
+	private String projNameS;
+	
+	/*private static final int ID_UP     = 1;
+	private static final int ID_DOWN   = 2;
+	private static final int ID_SEARCH = 3;
+	
+	private QuickAction quickAction;*/
+
+
 	 
-    public void onCreate(Bundle savedInstanceState) {
+    @Override
+	public void onCreate(Bundle savedInstanceState) {
     	
     	super.onCreate(savedInstanceState);
     	
 
-		pc= new PreferencesControler(this);
-        loadLocalLocale();
+		prefCnt= new PreferencesControler(this);
+        Utilities.setLocale(this);
 
-    	
-        setContentView(R.layout.main);
+    	setContentView(R.layout.main);
+        
       
         //we get all 4 buttons and create their listeners
         //each listener will create an Intent for changing the activity
         
-        ImageButton btnSampleCreate = (ImageButton)findViewById(R.id.mostra);
+        Button btnSampleCreate = (Button)findViewById(R.id.sampling);
         btnSampleCreate.setOnClickListener(btnSampleCreateListener);
         
-        ImageButton btnSincro = (ImageButton)findViewById(R.id.sincro);
+        Button btnSincro = (Button)findViewById(R.id.sincro);
         btnSincro.setOnClickListener(btnSincroListener);
       
       
-        ImageButton btnRsCreate = (ImageButton)findViewById(R.id.bCrearEstudi);
+        Button btnRsCreate = (Button)findViewById(R.id.bCrearEstudi);
         btnRsCreate.setOnClickListener(btnRsListener);
         
-      /*  ImageButton btnDataType= (ImageButton)findViewById(R.id.bDataType);
-        btnDataType.setOnClickListener(bDataTypeListener); */
-        
-      
-        
-        //Button provaBtn = (Button) findViewById(R.id.provaButton);
+        locality = (TextView)findViewById(R.id.tvLocality);
 
-        ImageButton btShowMap = (ImageButton)findViewById(R.id.bShowMapMain);
+        Button btShowMap = (Button)findViewById(R.id.bShowMapMain);
         btShowMap.setOnClickListener(bShowMapListener);
+        
+        //Button btConfiguration = (Button)findViewById(R.id.btMainOptions);
+        //btConfiguration.setOnClickListener(btConfigListener);
+      
+        //Button btShowGallery = (Button)findViewById(R.id.btShowGallery);
+        //btShowGallery.setOnClickListener(btShowGalleryListener);
+        
+        //ImageButton ibExtendedMenu = (ImageButton)findViewById(R.id.ibExtendedMenu);
+        //ibExtendedMenu.setOnClickListener(btExtendedInfo);
         
 		configPrefs=PreferenceManager.getDefaultSharedPreferences(this);
 
+		/*quickAction = new QuickAction(this, QuickAction.VERTICAL);
+		ActionItem nextItem 	= new ActionItem(ID_DOWN, "Informació del projecte", getResources().getDrawable(R.drawable.arrow_down));
+		ActionItem prevItem 	= new ActionItem(ID_UP, "Canviar de projecte", getResources().getDrawable(R.drawable.arrow_down));
+        ActionItem searchItem 	= new ActionItem(ID_SEARCH, "Gestió tesaures", getResources().getDrawable(R.drawable.arrow_down));
+
+		//add action items into QuickAction
+        quickAction.addActionItem(nextItem);
+		quickAction.addActionItem(prevItem);
+		quickAction.addActionItem(searchItem);
+		 */
     
         createFolderStructure();
         
-        if(pc.isFirstRun()) createFistExecutionDialog();
+        if(prefCnt.isFirstRun()) createFistExecutionDialog();
         
+        
+    	PreferencesControler pC= new PreferencesControler(getApplicationContext());
+		pC.setAutoField("locality", "");
+		
+		
+		if(pC.isFirstUpdate()){
+		
+			BackupControler bc= new BackupControler(this);
+			bc.copyProjects();
+			
+			
+			pC.setFirstUpdate(false);
+		
+		}
+		
+		if(pC.isSecondUpdate()){
+			
+			BackupControler bc= new BackupControler(this);
+			
+			bc.clearTH();
+			
+			pC.setSecondUpdate(false);
+		
+		}
+		
+		
 
     }
     
@@ -110,19 +179,19 @@ public class Main extends Activity {
     private void loadLocalLocale() {
 
     	
-    	String localName=pc.getLang();
+    	String localName=prefCnt.getLang();
     	Locale locale = new Locale(localName);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-    	
-
+    
         
 	}
 
 
 
+	@Override
 	public void onResume(){
     	
     	super.onResume();
@@ -143,12 +212,14 @@ public class Main extends Activity {
         }
         else {
 
-        	ResearchControler rC= new ResearchControler(this);
-        	long result=rC.loadProjectInfoById(predPrefId);
+        	ProjectControler projCnt= new ProjectControler(this);
+        	long result=projCnt.loadProjectInfoById(predPrefId);
         	
         	if(result>-1){
         		
-            	projName.setText(rC.getName());
+        		projNameS=projCnt.getName();
+        		
+            	projName.setText(projNameS);
             	
             		
         	}
@@ -170,8 +241,10 @@ public class Main extends Activity {
     }
     
     
+@Override
 public boolean onCreateOptionsMenu(Menu menu) {
     	
+	
 		menu.add(0, CONFIGURATION, 0,R.string.mConfiguration).setIcon(android.R.drawable.ic_menu_preferences);
 		menu.add(0, PROJECT_CHOOSE, 0,R.string.mChooseProject).setIcon(android.R.drawable.ic_menu_agenda);
 		menu.add(0, ABOUT_US, 0,R.string.mAboutUs).setIcon(android.R.drawable.ic_dialog_info);
@@ -217,6 +290,8 @@ public boolean onCreateOptionsMenu(Menu menu) {
 				createAboutUsDialog();
 				
 			break;
+			
+
 				
 		}
 		
@@ -225,31 +300,74 @@ public boolean onCreateOptionsMenu(Menu menu) {
 	}
     
 
+    
+	/*private OnClickListener btConfigListener = new OnClickListener()
+    {
+        public void onClick(View v)
+        {                        
+        	    	
+        	 Intent settingsActivity = new Intent(getBaseContext(),
+                     ConfigurationActivity.class);
+		       startActivityForResult(settingsActivity,3);
+        	
+        }
+    };*/
+    
+	/*private OnClickListener btExtendedInfo = new OnClickListener()
+    {
+        public void onClick(View v)
+        {                        
+        	    	
+        	
+        	
+    		
+    		
+    		//quickAction.show(v);
+        	
+        }
+    };*/
 
+
+  /*  private OnClickListener btShowGalleryListener = new OnClickListener()
+    {
+        public void onClick(View v)
+        {                        
+        	    	
+        	
+      	if(predPrefId==-1){
+    		
+    		Intent projActivity = new Intent(getBaseContext(),ProjectManagement.class);
+    		projActivity.putExtra("tab", 1);
+        	startActivity(projActivity);
+        	
+    		
+    		
+    	}
+    	else {
+    		
+    		Intent intent = new Intent(getBaseContext(), GalleryGrid.class);
+            
+     		Bundle b = new Bundle();
+     		b = new Bundle();
+     		b.putLong("id", predPrefId);
+     		intent.putExtras(b);
+
+     		startActivity(intent);
+
+
+    	}
+         
+        }
+    };*/
+
+    
+    
+   
 	private OnClickListener changeProjListener = new OnClickListener()
     {
         public void onClick(View v)
         {                        
-        	
-        	/*Intent projActivity = new Intent(getBaseContext(),
-                    ProjecteChooser.class);*/
-		
-        	/*if(predPrefId<0){
-        		
-        		Intent projActivity = new Intent(getBaseContext(),ProjectCreator.class);
-            	startActivity(projActivity);
-        		
-        		
-        	}
-        	else {
-        		
-        		Intent projActivity = new Intent(getBaseContext(),ProjectList.class);
-    		
-            	startActivity(projActivity);
-        		
-        		
-        	}*/
-        	
+        	    	
         	int tabId;
         	if(predPrefId<0) tabId=1;
         	else tabId=0;
@@ -258,12 +376,43 @@ public boolean onCreateOptionsMenu(Menu menu) {
     		projActivity.putExtra("tab", tabId);
         	startActivity(projActivity);
         	
-        	
-
-        
-        	
         }
     };
+    
+	/*private OnClickListener provaListener = new OnClickListener()
+    {
+        public void onClick(View v)
+        {                        
+        	    	
+    
+        	if(predPrefId==-1){
+        		
+        		Intent projActivity = new Intent(getBaseContext(),ProjectManagement.class);
+        		projActivity.putExtra("tab", 1);
+            	startActivity(projActivity);
+            	
+        		
+        		
+        	}
+        	else {
+        		
+        		Intent intent = new Intent(v.getContext(), ImageGalery.class);
+        	       
+	 			Bundle b = new Bundle();
+	 			b = new Bundle();
+	 			b.putLong("id", predPrefId);
+	 			intent.putExtras(b);
+
+	            startActivity(intent);
+
+
+        	}
+        	
+        	
+        	
+        	
+        }
+    };*/
     
     private OnClickListener bShowMapListener = new OnClickListener()
     {
@@ -353,7 +502,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
         	}
         	else {
         		
-        		Intent intent = new Intent(v.getContext(), SamplesList.class);        	       
+        		Intent intent = new Intent(v.getContext(), CitationManager.class);        	       
 	 			Bundle b = new Bundle();
 	 			b = new Bundle();
 	 			b.putLong("id", predPrefId);
@@ -389,17 +538,33 @@ public boolean onCreateOptionsMenu(Menu menu) {
     }; 
     
     
+    private PackageInfo getPackageInfo() {
+        PackageInfo pi = null;
+        try {
+             pi = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_ACTIVITIES);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return pi;
+    }
+    
+        
+    
     
     private void createAboutUsDialog() {
 
     	final Dialog dialog;
+    	PackageInfo versionInfo = getPackageInfo();
     	
     	dialog = new Dialog(this);
  	   	
     	dialog.setContentView(R.layout.aboutus);
-    	dialog.setTitle("Sobre Nosaltres");
+    	dialog.setTitle(getString(R.string.aboutUs)+": ZamiaDroid");
    	  
-    	
+    	TextView tvAboutUsExt=(TextView) dialog.findViewById(R.id.tvAboutUsExtended);
+    	tvAboutUsExt.setText(Html.fromHtml(getString(R.string.aboutUsExtended)));
+    	TextView tvVersion=(TextView) dialog.findViewById(R.id.tvZamiaDroidVersion);
+    	tvVersion.setText(Html.fromHtml(String.format(getString(R.string.appVersion), versionInfo.versionName)));
     	
 	    dialog.show();
 
@@ -427,7 +592,10 @@ public boolean onCreateOptionsMenu(Menu menu) {
     	   //	EditText name=(EditText)dialog.findViewById(R.id.etNameItem);
 
     	 Button languageList=(Button)dialog.findViewById(R.id.bChlanguage);
-    	  
+           
+    	 final EditText etUserName=(EditText)dialog.findViewById(R.id.userName);
+
+    	 etUserName.setImeOptions(EditorInfo.IME_ACTION_DONE);
    	
     	  
     	  languageList.setOnClickListener(new Button.OnClickListener(){
@@ -445,8 +613,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 				    	
 				    	builder.setSingleChoiceItems(languages, -1, new DialogInterface.OnClickListener() {
 				    	    public void onClick(DialogInterface dialog, int item) {
-				    	        Toast.makeText(getApplicationContext(), "Resultats filtrats pel camp: "+languages[item], Toast.LENGTH_SHORT).show();
-				    	        
+				    	      
 				    	        String language=languages[item];
 
 
@@ -497,10 +664,8 @@ public boolean onCreateOptionsMenu(Menu menu) {
   	    	public void onClick(View v)
   	    	              {
 
-  	    	                 EditText et=(EditText)dialog.findViewById(R.id.userName);
-  	    	                 String userName=et.getText().toString();
-  	    	                
-  	    	    
+  	    	                 String userName=etUserName.getText().toString();
+
   	    	  			   		
   	    	                 if(userName.equals("")){
 	  	    	                 
@@ -516,7 +681,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
   	    	                   editor.putString("usernamePref",userName);
   	    	                   editor.commit();
   	    	                   dialog.dismiss();
-  	    	                   pc.setFirstRun(false);
+  	    	                   prefCnt.setFirstRun(false);
   	    	                   
   	    	                 }
   	    	                 
@@ -545,7 +710,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
     private void createFolderStructure(){
     	
     	
-    	String path= pc.getDefaultPath();
+    	String path= prefCnt.getDefaultPath();
 
     	File f;
 
@@ -564,11 +729,13 @@ public boolean onCreateOptionsMenu(Menu menu) {
 		f = new File("/sdcard/"+path+"/Photos");
 		if(!f.exists())	f.mkdir();
 
-    	
+		f = new File("/sdcard/"+path+"/Backups");
+		if(!f.exists())	f.mkdir();
     }
     
     
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    @Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         
     
@@ -590,6 +757,86 @@ public boolean onCreateOptionsMenu(Menu menu) {
             	System.out.println("default");
      
         }
+    }
+    
+   
+    
+ /*   private void handleLocationChanged(Location loc)
+    {
+    	// Save the latest location
+    	this.currentLocation = loc;
+    	// Update the latitude & longitude TextViews
+    
+    	handleReverseGeocodeClick();
+    }
+    
+    private void handleReverseGeocodeClick()
+    {
+    	if (this.currentLocation != null)
+    	{
+    		// Kickoff an asynchronous task to fire the reverse geocoding
+    		// request off to google
+    		ReverseGeocodeLookupTask task = new ReverseGeocodeLookupTask();
+    		task.applicationContext = this;
+    		task.execute();
+    	}
+    	else
+    	{
+    		// If we don't know our location yet, we can't do reverse
+    		// geocoding - display a please wait message
+    		showToast("Please wait until we have a location fix from the gps");
+    	}
+    }
+    */
+	public void showToast(CharSequence message)
+    {
+		int duration = Toast.LENGTH_SHORT;
+
+		Toast toast = Toast.makeText(getApplicationContext(), message, duration);
+		toast.show();
+    }
+	
+	public class ReverseGeocodeLookupTask extends AsyncTask <Void, Void, String>
+    {
+    	private ProgressDialog dialog;
+    	protected Context applicationContext;
+    	
+    	@Override
+    	protected void onPreExecute()
+    	{
+    		this.dialog = ProgressDialog.show(applicationContext, "Please wait...contacting the tubes.", 
+                    "Requesting reverse geocode lookup", true);
+    	}
+    	
+		@Override
+		protected String doInBackground(Void... params) 
+		{
+			String localityName = "";
+			
+			if (currentLocation != null)
+			{
+				//localityName = Geocoder.reverseGeocode(currentLocation);
+			}
+			
+			return localityName;
+		}
+		
+		@Override
+		protected void onPostExecute(String result)
+		{
+			this.dialog.cancel();
+			locality.setText(result);
+			
+			if(result!=null && !result.equals("")){
+			
+				PreferencesControler pC= new PreferencesControler(getApplicationContext());
+				pC.setAutoField("locality", result);
+			
+			}
+			//uni.projecte.dataTypes.Utilities.showToast("Your Locality is: " + result, applicationContext);
+//			locationManager.removeUpdates(listener);
+			
+		}
     }
     
 }

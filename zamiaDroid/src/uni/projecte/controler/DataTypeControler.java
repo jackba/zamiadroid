@@ -23,8 +23,6 @@ import android.database.Cursor;
 import uni.projecte.dataLayer.bd.DataTypeDbAdapter;
 import uni.projecte.dataLayer.bd.FieldItemAdapter;
 import uni.projecte.dataLayer.bd.ItemDTDbAdapter;
-import uni.projecte.dataLayer.xml.DataTypeXMLparser;
-
 
 
 public class DataTypeControler {
@@ -34,10 +32,6 @@ public class DataTypeControler {
 	int imported;
 	
 	
-	public void incImported(){
-		
-		imported++;
-	}
 	
 	
 	public DataTypeControler(Context c) {
@@ -51,26 +45,6 @@ public class DataTypeControler {
 		
 	}
 	
-	public void parseLocalDataTypes(){
-		
-		
-		DataTypeXMLparser dtP =new DataTypeXMLparser(this);
-      	dtP.readXML(c,"urlFalsa",false);
-      	
-		
-	}
-	
-	
-	public void parseRemoteDataTypes(String url){
-		
-		clearDTdb();
-		
-		DataTypeXMLparser dtP =new DataTypeXMLparser(this);
-      	dtP.readXML(c,url,true);
-		
-		
-		
-	}
 	
 	
 	private void clearDTdb(){
@@ -259,6 +233,38 @@ public class DataTypeControler {
 	
 }
 	
+	public String[] getItemsbySecondLevelFieldId(long fieldId){
+		
+		FieldItemAdapter itemsHnd= new FieldItemAdapter(c);
+	
+		itemsHnd.open();
+		
+		
+		Cursor itemsC=itemsHnd.fetchItemsbySecondLevelFieldId(fieldId);
+		itemsC.moveToFirst();
+		
+		int n=itemsC.getCount();
+		
+		String[] itemList=new String[n];
+		
+		for(int i=0; i<n;i++){
+			
+			
+			itemList[i]=itemsC.getString(2);
+			itemsC.moveToNext();
+			
+			
+		}
+		
+		itemsC.close();
+		itemsHnd.close();
+		
+		return itemList;
+	
+	
+	
+}
+	
 
 	public String[] getItemsbyDTId(long dtId){
 		
@@ -379,9 +385,13 @@ public class DataTypeControler {
 	}
 
 	public int getImportedItems() {
-		// TODO Auto-generated method stub
+
 		return this.imported;
+		
 	}
+
+
+
 
 
 
