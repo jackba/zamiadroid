@@ -24,12 +24,14 @@
 	
         <string name="bRemoveTh">Éliminer le thesaurus taxonomique</string>
         <string name="deleteThQuestion">Voulez-vous éliminer le thesaurus taxonomique?</string>
-        <string name="thUsed">le thesaurus taxonomique est en cours d\'utilisation. Il ne peut pas être eliminé.</string>
+		<string name="thUsedByOneProj">Taxonomic thesaurus in use by %1s project, it can not be deleted.</string>
+        <string name="thUsedBySeveralProj">Taxonomic thesaurus in use by %1d projects, it can not be deleted.</string>
 
         <!-- Change Thesaurus -->
         <string name="bChangeTh">Changer de thesaurus taxonomique</string>
-        <string name="thChangedText">Le thesaurus taxonomique par défaut est changé: </string>
-
+        <string name="thChangedText">Changed thesaurus</string>
+        <string name="thChangedShort">Changed thesaurus</string>
+        
         <!-- Import Thesaurus -->
             
         <string name="thName">Indiquer le nom du thesaurus </string>
@@ -37,10 +39,12 @@
         <string name="thLoadingTxt">S\'il vous plaît, ne fermez pas cette fenêtre. Selon la taille du thesaurus taxonomique à importer, le processus peut prendre quelques minutes.</string>
         <string name="bImportTh">Importer le thesaurus taxonomique</string>
         <string name="sameThName">Il existe déjà un thesaurus dans le système nommé</string>
-            
+        <string formatted="false" name="thImportRepDesc">&lt;b>Thesaurus %1s: &lt;/b> %2s</string>
+        <string name="thRemoteUpdated">Existing thesaurus updated</string>
+        <string name="thRemoteNotUpdated">New thesaurus\' update: %1s</string>
 
     <!-- Thesaurus relations with projects-->
-	<string name="tvDefaultTh">thesaurus taxonomique du système: </string>
+	<string name="tvDefaultTh">thesaurus taxonomique: </string>
 	<string name="cbNoTh">Sans thesaurus taxonomique</string>
     <string name="noThQuestion">Aucun thesaurus selectionné. Choisissez-en un ou sélectionnez l\'option Ne pas utiliser de thesaurus taxonomique</string>
 

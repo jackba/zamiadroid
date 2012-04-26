@@ -77,14 +77,16 @@ public class AttributeDbAdapter {
             
         }
 
-        public void onCreate(SQLiteDatabase db) {
+        @Override
+		public void onCreate(SQLiteDatabase db) {
 
             db.execSQL(DATABASE_CREATE);
             
 
         }
 
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        @Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
                     + newVersion + ", which will destroy all old data");
             db.execSQL("DROP TABLE IF EXISTS notes");
@@ -120,6 +122,17 @@ public class AttributeDbAdapter {
     public void close() {
         mDbHelper.close();
     }
+
+    
+    public void deleteDatabase() {
+        mDbHelper.close();
+        mDb.close();
+        if (mCtx.deleteDatabase(DATABASE_NAME)) {
+          Log.d(TAG, "deleteDatabase(): database deleted.");
+        } else {
+          Log.d(TAG, "deleteDatabase(): database NOT deleted.");
+        }
+      } 
 
 
     /**
@@ -299,9 +312,19 @@ public class AttributeDbAdapter {
 
     	
  	   return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_RS,
-                NAME,TYPE,LABEL,PREVALUE,CAT,VISIBLE}, KEY_RS + "=" + rsId, null, null, null, DEF+" DESC , "+CAT+" ASC");
+                NAME,TYPE,LABEL,PREVALUE,CAT,VISIBLE,DESC}, KEY_RS + "=" + rsId, null, null, null, DEF+" DESC , "+CAT+" ASC");
  
  }
+    
+    public Cursor fetchAllFieldsFromProjectWithDefaultOrder(long rsId) throws SQLException {
+
+    	
+  	   return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_RS,
+                 NAME,TYPE,LABEL,PREVALUE,CAT,VISIBLE,DESC}, KEY_RS + "=" + rsId, null, null, null, null);
+  	   
+  
+  }
+
 
 	public boolean setVisibilty(long idRs, String attName, boolean visible) {
 

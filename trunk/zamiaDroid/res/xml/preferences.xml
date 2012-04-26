@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
->
         <PreferenceCategory
-                android:title="Opcions Principals"
+                android:title="@string/mainOptions"
                 >
          
                <EditTextPreference
@@ -20,7 +19,7 @@
               <ListPreference
                         android:title="@string/confTitleCoord"
                         android:key="listPrefCoord"
-                        android:defaultValue="utm"                        
+                        android:defaultValue="UTM"                        
                         android:entries="@array/sisCoord"
                         android:entryValues="@array/sisCoord" />
         </PreferenceCategory>
@@ -31,6 +30,10 @@
                 android:defaultValue="zamiaDroid"
                 android:title="@string/confTitlePath"
                 android:key="urlThPref" />
+                
+   <CheckBoxPreference android:title="@string/checkSynomymsTitle"
+            android:key="checkSynonymsPref" android:summary="@string/checkSynomyms" />
+                
 
                 
         <PreferenceScreen
@@ -42,6 +45,18 @@
                         android:title="@string/confTitleGPSActive"
                         android:summary="@string/confTitleGPSActiveSummary"
                         android:key="GPSactivationPref" />
+                        
+              <EditTextPreference
+                android:name="Geoid Correction"
+                android:defaultValue="49"
+                android:title="@string/confGPSGeoid"
+                android:key="geoidGPSCorrection" />
+                   
+                  <CheckBoxPreference android:title="@string/updateGPSWhenTaxon"
+            android:key="updateGPSPref" android:summary="@string/updateGPSWhenTaxonSummary" 
+            android:defaultValue="true"
+            />
+            
             <!--   <ListPreference
                         android:title="Captura del GPS"
                         android:key="gpsCapture"
@@ -53,10 +68,30 @@
                         android:summary="This preference can be true or false"
                         android:key="checkboxPref" />-->  
         </PreferenceScreen>
+        
+          <!--     <PreferenceScreen
+                android:key="SecondPrefScreen"
+                android:title="@string/prefAutoFields"
+                android:summary="@string/prefAutoFieldsSum">
+                
+               <CheckBoxPreference android:title="@string/prefAutoFieldLocality"
+            android:key="prefAutoFieldLocality" android:summary="@string/prefAutoFieldLocalitySum" /> -->
+            <!--   <ListPreference
+                        android:title="Captura del GPS"
+                        android:key="gpsCapture"
+                        android:entries="@array/gpsCapture"
+                        android:entryValues="@array/gpsCaptureValues" /> -->  
+                  <!--  <CheckBoxPreference
+                        android:title="Activar GPS extern per Bluetooth"
+                        android:defaultValue="false"
+                        android:summary="This preference can be true or false"
+                        android:key="checkboxPref" />-->  
+        <!-- </PreferenceScreen> -->
    
         <Preference
                 android:title="@string/confTitleReset"
                 android:summary="@string/confTitleResetSummary"
                 android:key="customPref" />
         </PreferenceCategory>
+        
 </PreferenceScreen>

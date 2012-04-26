@@ -27,6 +27,7 @@ public class MapLocation {
 	private GeoPoint	point;
 	private String		name;
 	private boolean		moreInfo;
+	private boolean		chosen;
 
 	public MapLocation(long citationId,String name,double latitude, double longitude) {
 		
@@ -34,6 +35,17 @@ public class MapLocation {
 		this.name = name;
 		this.moreInfo=false;
 		point = new GeoPoint((int)(latitude*1e6),(int)(longitude*1e6));
+		chosen=false;
+		
+	}
+	
+	public MapLocation(long citationId,String name, GeoPoint point){
+		
+		this.citationId=citationId;
+		this.name = name;
+		this.moreInfo=false;
+		
+		this.point=point;
 		
 	}
 
@@ -59,6 +71,25 @@ public class MapLocation {
 
 	public void setCitationId(long citationId) {
 		this.citationId = citationId;
+	}
+
+	public void setPoint(GeoPoint point) {
+		this.point = point;
+	}
+
+	public MapLocation copy() {
+
+		MapLocation loc=new MapLocation(this.citationId, this.name, this.point);
+		
+		return loc;
+	}
+
+	public void setChosen(boolean chosen) {
+		this.chosen = chosen;
+	}
+
+	public boolean isChosen() {
+		return chosen;
 	}
 	
 }

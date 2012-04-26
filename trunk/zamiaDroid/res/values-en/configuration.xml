@@ -18,5 +18,9 @@
     
     <string name="reset_values">Default values have been reset</string>
     
+     <string name="confGPSGeoid">Geoid correction (elevation)</string>
+    
+    <string name="updateGPSWhenTaxon">GPS when taxon added</string>
+	<string name="updateGPSWhenTaxonSummary">GPS will be updated when taxon field is filled if it exists</string>	
 
 </resources>

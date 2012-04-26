@@ -31,14 +31,21 @@ import android.util.Log;
  */
 public class ThesaurusItemsDbAdapter {
 
-	public static final String KEY_ROWID = "_id";
-    public static final String GENUS = "Genus";
-    public static final String SPECIE = "Specie";
-    public static final String SUBSPECIE = "Subspecie";
-    public static final String ICODE = "iCode";
-    public static final String NAMECODE = "NameCode";
-    public static final String AUTHOR = "Author";
+	public static final String KEY_ROWID = "_id";   
+    public static final String GENUS = "Genus";   			/* Genus */
+    public static final String SPECIE = "Specie"; 			/* SpecificEpithet */
+    public static final String SUBSPECIE = "Subspecie";		/* InfraspecificEpithet */
+    public static final String ICODE = "iCode"; 			/* PrimaryKey */
+    public static final String NAMECODE = "NameCode"; 		/* SecondaryKey */
+    public static final String AUTHOR = "Author";  			/* SpecificEpithetAuthor */
+    public static final String SUBAUTHOR = "SubAuthor"; 	/* InfraspecificEpithetAuthor */
 
+    
+    /* New field created when plain thesaurus reader added  */
+   
+    public static final String INFRA_SPEC_RANK="InfraspecificRank"; /* {"forma.", "subsp.", "var."} */
+
+    
     
   
     private static final String TAG = "ThesaurusItemDbAdapter";
@@ -51,8 +58,17 @@ public class ThesaurusItemsDbAdapter {
      */
   
 
-    private static final String DATABASE_NAME = "thDB";
-    private static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_NAME = "Thesaurus";
+    
+    private static final int DATABASE_VERSION = 3;
+    
+    /*
+     * Version 2: main version
+     * Version 3: thesaurusType added
+     * 
+     */
+    
+    
 	private static String DATABASE_TABLE;
 
     private final Context mCtx;
@@ -67,7 +83,8 @@ public class ThesaurusItemsDbAdapter {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
-        public void onCreate(SQLiteDatabase db) {
+        @Override
+		public void onCreate(SQLiteDatabase db) {
         	
         	DATABASE_CREATE =
                 "create table if not exists "+ DATABASE_TABLE + " ("
@@ -77,7 +94,9 @@ public class ThesaurusItemsDbAdapter {
                 + SUBSPECIE + " TEXT,"
                 + ICODE + " TEXT,"
                 + NAMECODE + " TEXT,"
-                + AUTHOR + " TEXT"
+                + AUTHOR + " TEXT,"
+                + SUBAUTHOR + " TEXT,"
+                + INFRA_SPEC_RANK + " TEXT"
                 + ");";
 
             db.execSQL(DATABASE_CREATE);
@@ -85,7 +104,8 @@ public class ThesaurusItemsDbAdapter {
 
         }
         
-     public void onOpen(SQLiteDatabase db) {
+     @Override
+	public void onOpen(SQLiteDatabase db) {
         	
         	DATABASE_CREATE =
                 "create table if not exists "+ DATABASE_TABLE + " ("
@@ -95,7 +115,9 @@ public class ThesaurusItemsDbAdapter {
                 + SUBSPECIE + " TEXT,"
                 + ICODE + " TEXT,"
                 + NAMECODE + " TEXT,"
-                + AUTHOR + " TEXT"
+                + AUTHOR + " TEXT,"
+                + SUBAUTHOR + " TEXT,"
+                + INFRA_SPEC_RANK + " TEXT"
                 + ");";
 
             db.execSQL(DATABASE_CREATE);
@@ -104,11 +126,24 @@ public class ThesaurusItemsDbAdapter {
         } 
         
 
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
+        @Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            
+        	
+        	Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
                     + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS notes");
-            onCreate(db);
+
+            	/* Added new Field */
+                if (oldVersion < 3) {
+
+                    final String ALTER_TBL = 
+                        "ALTER TABLE " + DATABASE_TABLE + 
+                        " ADD COLUMN " + INFRA_SPEC_RANK + " text NOT NULL DEFAULT 'subsp.'"
+                        + ";";
+                    
+                    db.execSQL(ALTER_TBL);
+                	
+                }
         }
     }
 
@@ -121,6 +156,18 @@ public class ThesaurusItemsDbAdapter {
     public ThesaurusItemsDbAdapter(Context ctx) {
         this.mCtx = ctx;
     }
+    
+    
+    public void deleteDatabase() {
+        mDbHelper.close();
+        mDb.close();
+        if (mCtx.deleteDatabase(DATABASE_NAME)) {
+          Log.d(TAG, "deleteDatabase(): database deleted.");
+        } else {
+          Log.d(TAG, "deleteDatabase(): database NOT deleted.");
+        }
+      } 
+
 
     /**
      * Open the notes database. If it cannot be opened, try to create a new
@@ -156,7 +203,7 @@ public class ThesaurusItemsDbAdapter {
      * @param dtDesc the description of the DataType
      * @return rowId or -1 if failed
      */
-    public long addThesaurusItem(String genus, String specie, String subspecie, String iCode, String nameCode, String author) {
+    public long addThesaurusItem(String genus, String specie, String subspecie, String iCode, String nameCode, String author,String subAuthor, String infraSpecRank) {
  
     	
     	ContentValues initialValues = new ContentValues();
@@ -166,6 +213,10 @@ public class ThesaurusItemsDbAdapter {
         initialValues.put(ICODE , iCode);  
         initialValues.put(NAMECODE , nameCode);  
         initialValues.put(AUTHOR , author);  
+        initialValues.put(SUBAUTHOR , subAuthor);  
+        
+        if(infraSpecRank.equals("")) initialValues.put(INFRA_SPEC_RANK , "subsp."); 
+        else initialValues.put(INFRA_SPEC_RANK ,infraSpecRank);  
 
 
         return mDb.insert(DATABASE_TABLE, null, initialValues);
@@ -174,6 +225,11 @@ public class ThesaurusItemsDbAdapter {
 
     }
     
+    public boolean removeThesaurusItem(long thItemId) {
+
+        return mDb.delete(DATABASE_TABLE, KEY_ROWID + "=" + thItemId, null) > 0;
+
+	}
     
     
     public void startTransaction(){
@@ -191,7 +247,7 @@ public class ThesaurusItemsDbAdapter {
     	
     }
     
-    public long fastInsert(String genus, String specie, String subspecie, String iCode, String nameCode, String author) {
+    public long fastInsert(String genus, String specie, String subspecie, String iCode, String nameCode, String author,String subAuthor) {
  
     	
     	ContentValues initialValues = new ContentValues();
@@ -201,7 +257,7 @@ public class ThesaurusItemsDbAdapter {
         initialValues.put(ICODE , iCode);  
         initialValues.put(NAMECODE , nameCode);  
         initialValues.put(AUTHOR , author);  
-
+        initialValues.put(SUBAUTHOR , subAuthor);  
 
         return mDb.insert(DATABASE_TABLE, null, initialValues);
         
@@ -242,7 +298,7 @@ public class ThesaurusItemsDbAdapter {
     public Cursor fetchTbhItem(String genus,String specie, String subspecie) throws SQLException {
     	
  	   return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, GENUS,
-               SPECIE ,SUBSPECIE,AUTHOR,ICODE,NAMECODE}, GENUS + "= \"" + genus +"\" and "+ SPECIE + "= \"" + specie +"\" and "+ SUBSPECIE + "= \""+ subspecie+"\"", null, null, null, null);
+               SPECIE,SUBSPECIE,AUTHOR,ICODE,NAMECODE,SUBAUTHOR,INFRA_SPEC_RANK}, GENUS + "= \"" + genus +"\" and "+ SPECIE + "= \"" + specie +"\" and "+ SUBSPECIE + "= \""+ subspecie+"\"", null, null, null, null);
  
  }
     
@@ -269,15 +325,22 @@ public class ThesaurusItemsDbAdapter {
    public Cursor fetchSynonymous(String icode) throws SQLException {
    	
 	   return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, GENUS,
-              SPECIE,SUBSPECIE,AUTHOR}, ICODE + "= \"" + icode +"\"", null, null, null, null);
+              SPECIE,SUBSPECIE,AUTHOR,SUBAUTHOR,INFRA_SPEC_RANK}, ICODE + "= \"" + icode +"\"", null, null, null, null);
 
 }
 
 	public Cursor fetchNext(String selection) {
 		   //" ORDER BY Genus Specie Subspecie ASC"
 		
-			return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, GENUS,
-	                  SPECIE ,SUBSPECIE,AUTHOR}, selection, null, null,null,SPECIE);
+			return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID,GENUS,
+	                  SPECIE,SUBSPECIE,AUTHOR,ICODE,NAMECODE,SUBAUTHOR,INFRA_SPEC_RANK}, selection, null, null,null,GENUS+","+SPECIE+","+SUBSPECIE);
+	}
+	
+	public Cursor fetchGenusNext(String selection) {
+			
+		
+			return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID,GENUS,
+	                  SPECIE,SUBSPECIE,AUTHOR,ICODE,NAMECODE,SUBAUTHOR,INFRA_SPEC_RANK}, selection, null, GENUS,null,GENUS+","+SPECIE+","+SUBSPECIE);
 	}
 	
 	public void dropTable(String tbName){
@@ -285,5 +348,11 @@ public class ThesaurusItemsDbAdapter {
 		mDb.execSQL("drop table if exists "+tbName);
 		
 	}
+
+
+	
+
+
+
     
 }

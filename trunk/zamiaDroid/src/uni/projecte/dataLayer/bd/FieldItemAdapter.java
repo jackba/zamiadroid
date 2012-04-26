@@ -53,9 +53,22 @@ public class FieldItemAdapter {
             + ");";
     
     
+    /**
+     * 
+     */
+    
+    private static final String DATABASE_SECOND_CREATE =
+        "create table SecondLevelItemField ("
+        + KEY_ROWID + " INTEGER PRIMARY KEY,"
+        + FIELD_ID+ " INTEGER,"
+        + ITEM_VALUE + " TEXT"
+        + ");";
+    
 
-    private static final String DATABASE_NAME = "fieldItem";
+    private static final String DATABASE_NAME = "FieldItem";
     private static final String DATABASE_TABLE = "ItemField";
+    private static final String DATABASE_TABLE_SECOND = "SecondLevelItemField";
+
     private static final int DATABASE_VERSION = 2;
 
     private final Context mCtx;
@@ -66,14 +79,17 @@ public class FieldItemAdapter {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
-        public void onCreate(SQLiteDatabase db) {
+        @Override
+		public void onCreate(SQLiteDatabase db) {
 
             db.execSQL(DATABASE_CREATE);
-           
+            db.execSQL(DATABASE_SECOND_CREATE);
+
 
         }
 
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        @Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
                     + newVersion + ", which will destroy all old data");
             db.execSQL("DROP TABLE IF EXISTS notes");
@@ -131,6 +147,26 @@ public class FieldItemAdapter {
 
         return mDb.insert(DATABASE_TABLE, null, initialValues);
     }
+    
+    /**
+     * Create a new ItemDT using the name, idDT and the info. If the ItemDT is
+     * successfully created return the new rowId for that ItemDT, otherwise return
+     * a -1 to indicate failure.
+     * 
+     * @param itemName the name of the ItemDT
+     * @param idDT the DT identificator of the ItemDT
+     * @param itemInfo the info of the ItemDT
+     * @return rowId or -1 if failed
+     */
+    public long addSecondLevelFieldItem(long fieldId, String itemValue) {
+        
+    	ContentValues initialValues = new ContentValues();
+        
+        initialValues.put(FIELD_ID, fieldId);
+        initialValues.put(ITEM_VALUE , itemValue); 
+
+        return mDb.insert(DATABASE_TABLE_SECOND, null, initialValues);
+    }
 
     /**
      * Delete the ItemDT with the given rowId
@@ -143,17 +179,16 @@ public class FieldItemAdapter {
         return mDb.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
     }
     
-    /**
-     * Return a Cursor over the list of all items DT in the database
-     * 
-     * @return Cursor over all items
-     */
-  /*  public Cursor fetchAllDtItems() {
+    public boolean deleteItemsFromField(long fieldId) {
 
-        return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, DT_ID,
-                ITEM_NAME,ITEM_INFO}, null, null, null, null, null);
+        return mDb.delete(DATABASE_TABLE, FIELD_ID + "=" + fieldId, null) > 0;
     }
-*/
+    
+    public boolean deleteItemsFromSecondLevelField(long fieldId) {
+
+        return mDb.delete(DATABASE_TABLE_SECOND, FIELD_ID + "=" + fieldId, null) > 0;
+    }
+
     /**
      * Return a Cursor positioned at the itemDT that matches the given DT id
      * 
@@ -165,6 +200,21 @@ public class FieldItemAdapter {
     public Cursor fetchItemsbyFieldId(long fieldId) throws SQLException {
     	
  	   return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, FIELD_ID,
+                ITEM_VALUE}, FIELD_ID + "=" + fieldId, null, null, null, null);
+ 
+ }
+    
+    /**
+     * Return a Cursor positioned at the itemDT that matches the given DT id
+     * 
+     * @param type of note to retrieve
+     * @return Cursor positioned to matching note, if found
+     * @throws SQLException if note could not be found/retrieved
+     */
+    
+    public Cursor fetchItemsbySecondLevelFieldId(long fieldId) throws SQLException {
+    	
+ 	   return mDb.query(DATABASE_TABLE_SECOND, new String[] {KEY_ROWID, FIELD_ID,
                 ITEM_VALUE}, FIELD_ID + "=" + fieldId, null, null, null, null);
  
  }

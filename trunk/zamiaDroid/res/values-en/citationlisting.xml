@@ -21,6 +21,7 @@
     
     <string name="chooseField">Select one observation</string>
     <string name="noCitations">No existing observations</string>
+    <string name="noLocationsCitations">There is no observations with location</string>
     
       
         

@@ -8,56 +8,56 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 android:padding="5px"
 >
 
-<LinearLayout
-android:id="@+id/widget28"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="vertical"
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:padding="5px"
->
-<TextView
-android:id="@+id/tvInfoListTh"
-android:text="@string/tvInfoListTh"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-
->
-</TextView>
-
-
-<Button android:text="@string/bChooseTh" android:id="@+id/bChooseTh" android:layout_width="wrap_content" android:layout_height="wrap_content"  android:layout_alignParentRight="true"
-></Button>
-
-<!-- <TextView android:text="@string/tvChoosenTh" android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView> -->
+<LinearLayout android:layout_width="fill_parent" android:background="@color/background2" android:id="@+id/linearLayout1" android:layout_height="wrap_content" android:padding="5px">
+    <TextView android:textColor="#ffffffff" android:text="@string/thInfoTitle" android:layout_height="wrap_content" android:id="@+id/textView3" android:layout_width="wrap_content"></TextView>
 </LinearLayout>
+
 <LinearLayout
 android:id="@+id/linearThInfo"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
 android:padding="5px"
-android:background="#ff333333"
 android:orientation="vertical"
 
->    
+>
+    <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout3" android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="wrap_content" android:orientation="vertical" android:id="@+id/linearLayout4" android:layout_height="fill_parent" android:layout_weight="1">
+            <TextView android:text="@+id/TextView02" android:layout_height="wrap_content" android:id="@+id/tvThName" android:layout_width="wrap_content"></TextView>
+            <TextView android:text="TextView" android:layout_height="wrap_content" android:id="@+id/tvThType" android:layout_width="wrap_content"></TextView>
+        </LinearLayout>
+        <LinearLayout android:layout_width="wrap_content" android:id="@+id/linearLayout5" android:layout_height="fill_parent">
+            <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/removeThButton" android:layout_gravity="right"></ImageButton>
+        </LinearLayout>
+    </LinearLayout>
 
+    <TextView
+        android:id="@+id/tvThUpdateTimestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
-<TextView android:text="@+id/TextView02" android:id="@+id/tvThName" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:text="@+id/TextView03" android:id="@+id/tvThNumItems" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<LinearLayout
+    android:id="@+id/linearLayout8"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
 
-<AutoCompleteTextView android:text="" android:id="@+id/thAutoView" android:layout_width="fill_parent" android:layout_height="wrap_content"></AutoCompleteTextView>
+    <TextView
+        android:id="@+id/tvThOrigin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
-
-<TextView android:text="" android:id="@+id/tvIcode" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:text="" android:id="@+id/tvNameCode" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:text="" android:id="@+id/tvAuthor" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:text="" android:id="@+id/tvCorrect" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-
-
-<ListView android:id="@+id/thList" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"></ListView>
+    <TextView
+        android:id="@+id/tvThOriginType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" android:layout_marginLeft="10dp"/>
 
 </LinearLayout>
 
+</LinearLayout>
+
+<!--  
 <LinearLayout
 android:id="@+id/widget28"
 android:layout_width="fill_parent"
@@ -69,9 +69,77 @@ android:padding="5px"
 
 <Button android:text="@string/bRemoveTh" android:id="@+id/bRemoveTh" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
 
-<!-- <Button android:text="@string/bImportTh" android:id="@+id/importTh" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button> -->
+<Button android:text="@string/bImportTh" android:id="@+id/importTh" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button> 
 
 
+</LinearLayout> -->
+<LinearLayout android:layout_width="fill_parent" android:background="@color/background2" android:id="@+id/linearLayout1" android:layout_height="wrap_content" android:padding="5px" android:layout_marginTop="10dp">
+    <TextView android:textColor="#ffffffff" android:text="@string/thInfoSearchField" android:layout_height="wrap_content" android:id="@+id/textView3" android:layout_width="wrap_content"></TextView>
+</LinearLayout>
+
+<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/llRegisterViewer" android:orientation="vertical" android:layout_margin="2px">
+    <TextView android:text="@+id/TextView03" android:layout_height="wrap_content" android:id="@+id/tvThNumItems" android:layout_width="wrap_content"></TextView>
+    <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout6" android:layout_height="wrap_content">
+        <AutoCompleteTextView android:id="@+id/thAutoView" android:layout_height="wrap_content" android:text="AutoCompleteTextView" android:layout_width="fill_parent" android:layout_weight="1"></AutoCompleteTextView>
+        <LinearLayout android:layout_width="wrap_content" android:id="@+id/linearLayout7" android:layout_height="fill_parent">
+
+            <ImageButton
+                android:id="@+id/thInfoRemoveItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/ic_menu_delete" />
+
+            <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/thInfoButton"></ImageButton>
+        </LinearLayout>
+    </LinearLayout>
+    <TableLayout android:stretchColumns="*" android:layout_width="fill_parent" android:layout_height="fill_parent" android:visibility="gone" android:id="@+id/tlRegisterFields">
+        <TableRow android:background="#ff333333" android:id="@+id/tableRow4" android:layout_height="wrap_content" android:layout_width="fill_parent">
+            <TextView android:text="@string/thInfoAuthors" android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+            <TextView android:text="@string/thInfoKeys" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/textView2"></TextView>
+        </TableRow>
+        <TableRow android:layout_height="wrap_content" android:id="@+id/tableRow1" android:layout_width="fill_parent">
+            <TextView android:padding="2px" android:text="TextView" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/tvAuthor"></TextView>
+            <TextView android:padding="2px" android:text="TextView" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/tvIcode"></TextView>
+        </TableRow>
+        <TableRow  android:layout_height="wrap_content" android:id="@+id/tableRow2" android:layout_width="fill_parent">
+            <TextView android:padding="2px" android:text="TextView" android:layout_height="wrap_content" android:id="@+id/tvAuthorSub" android:layout_width="wrap_content"></TextView>
+            <TextView android:padding="2px" android:text="TextView" android:layout_height="wrap_content" android:id="@+id/tvNameCode" android:layout_width="wrap_content"></TextView>
+        </TableRow>
+    </TableLayout>
+    
+    <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout9" android:layout_height="wrap_content" android:background="#ff333333" android:padding="2px">
+            <TextView android:text="TextView" android:layout_height="wrap_content" android:id="@+id/tvCorrect" android:layout_width="wrap_content"></TextView>
+	</LinearLayout>
+</LinearLayout>
+
+
+<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/llAddRegister" android:orientation="vertical" android:visibility="gone">
+    <LinearLayout android:layout_marginTop="10dp" android:background="@color/background2" android:padding="5px" android:id="@+id/linearLayout1" android:layout_height="wrap_content" android:layout_width="fill_parent">
+        <TextView android:text="Afegir nou registre" android:textColor="#ffffffff" android:layout_height="wrap_content" android:id="@+id/textView3" android:layout_width="wrap_content"></TextView>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/linearLayout2" android:layout_height="fill_parent" android:layout_width="fill_parent" android:layout_gravity="center" android:layout_marginTop="4dp">
+        <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Nou Gènere" android:id="@+id/btNewGenus"></Button>
+        <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Nou Epítet Espec." android:id="@+id/btNewSpecEpithet"></Button>
+        <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Nou Infra-Ep. Espec." android:id="@+id/btNewIfraSpecEpithet"></Button>
+    </LinearLayout>
+    <TableLayout android:layout_marginTop="5dp" android:id="@+id/tableLayout1" android:stretchColumns="*" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TableRow android:layout_height="wrap_content" android:id="@+id/tableRow5" android:layout_width="fill_parent">
+            <EditText android:hint="@string/etHintThGender" android:id="@+id/etAddItemGender" android:layout_height="wrap_content" android:layout_width="wrap_content"></EditText>
+            <ImageButton android:layout_height="wrap_content" android:layout_gravity="right" android:src="@null" android:layout_width="wrap_content" android:id="@+id/ibAddThItem"></ImageButton>
+        </TableRow>
+        <TableRow android:layout_height="wrap_content" android:id="@+id/tableRow3" android:layout_width="fill_parent">
+            <EditText android:hint="@string/etHintThSpEp"  android:id="@+id/etAddItemSpecEp" android:layout_height="wrap_content" android:layout_width="wrap_content"></EditText>
+            <EditText android:hint="@string/etHintThSpEpAut" android:id="@+id/etAddItemSpecEpAuth" android:layout_height="wrap_content" android:layout_width="wrap_content"></EditText>
+        </TableRow>
+        <TableRow android:layout_height="wrap_content" android:id="@+id/tableRow6" android:layout_width="fill_parent">
+            <EditText android:hint="@string/etHintThSpInfraEp" android:id="@+id/etAddItemInfraSpecEp" android:layout_height="wrap_content" android:layout_width="wrap_content"></EditText>
+            <EditText android:hint="@string/etHintThSpInfraEpAut" android:id="@+id/etAddItemInfraSpecEpAuth" android:layout_height="wrap_content" android:layout_width="wrap_content"></EditText>
+        </TableRow>
+        <TableRow android:layout_height="wrap_content" android:id="@+id/tableRow7" android:background="#ff333333" android:layout_width="fill_parent" android:layout_marginTop="5dp" android:padding="5dp">
+            <EditText android:hint="@string/etHintThPrimKey" android:id="@+id/etAddItemPrimKey" android:layout_height="wrap_content" android:layout_width="wrap_content"></EditText>
+            <EditText android:hint="@string/etHintThSecKey" android:id="@+id/etAddItemSecKey" android:layout_height="wrap_content" android:layout_width="wrap_content"></EditText>
+        </TableRow>
+    </TableLayout>
 </LinearLayout>
 
 </LinearLayout>
